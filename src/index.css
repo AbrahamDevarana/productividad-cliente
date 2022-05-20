@@ -1,13 +1,156 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import '~antd/dist/antd.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root{
+    min-height: 100vh;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/static/fonts/PlayfairDisplay-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/static/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/static/fonts/PlayfairDisplay-ExtraBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/static/fonts/PlayfairDisplay-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Mulish';
+    src: url('./assets/static/fonts/Mulish-ExtraBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Playfair Display';
+    src: url('./assets/static/fonts/PlayfairDisplay-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  h1,h2,h3,h4 {
+    font-family: 'Playfair Display', serif;
+  }
+  p, li, span, a{
+    font-family: 'Mulish', sans-serif;
+    @apply text-base
+  }
+
+
+  /* Override Antd CSS */
+  .ant-collapse .ant-collapse-item  .ant-collapse-header{
+    color:#242a38;
+    font-weight: bold;
+    opacity: 0.9;
+    font-size: large;
+    font-family: 'Playfair Display', serif;
+}
+
+.ant-dropdown-menu-item{
+  @apply hover:text-white
+}
+
+.ant-dropdown-menu-title-content{
+  @apply hover:bg-devarana-blue hover:text-white transition-colors duration-300 ease-in-out text-devarana-graph px-5 w-full text-center
+}
+
+.ant-dropdown-menu-item, .ant-dropdown-menu-submenu-title{
+  @apply p-0
+}
+
+/* Nuevos CSS */
+.h-sider{
+  height: calc(100vh - 56px);
+}
+
+.modalButton{
+  @apply hover:bg-devarana-blue hover:text-white py-2 transition-colors duration-300 ease-in-out text-devarana-graph px-5 w-full text-center
+}
+
+
+.antdInput{
+  @apply text-devarana-midnight text-sm pl-2 opacity-80
 }
