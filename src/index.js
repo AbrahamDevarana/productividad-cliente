@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { ConfigProvider } from "antd";
+import es_ES from 'antd/es/locale/es_ES';
+import moment from "moment";
+import "moment/locale/es-mx"
+moment.locale('es-mx')
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <ConfigProvider locale={es_ES}>
+      <App />
+    </ConfigProvider>
   </React.StrictMode>
 );
 

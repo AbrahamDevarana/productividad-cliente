@@ -27,6 +27,7 @@ module.exports = {
       transitionProperty: {
         'height': 'height',
         'width': 'width',
+        'max-width': 'max-width',
         'objectPosition': 'objectPosition',
       },      
     },

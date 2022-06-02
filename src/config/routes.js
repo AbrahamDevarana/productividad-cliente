@@ -3,6 +3,7 @@ import LayoutLogin from '../layouts/LayoutLogin'
 import Login from '../pages/auth/Login'
 import Error404 from '../pages/Error404'
 import Home from '../pages/Home'
+import Perfil from '../pages/Perfil'
 import Tarea from '../pages/Tareas'
 
 const routesAccess = [
@@ -28,6 +29,16 @@ const routesAdmin = [
         path: "/tareas",
         layout: LayoutApp,
         component: Tarea
+    }, 
+    {
+        path: "/perfil",
+        layout: LayoutApp,
+        component: Perfil
+    },
+    {
+        path: "/perfil/:userSlug",
+        layout: LayoutApp,
+        component: Perfil
     } 
 ]
 

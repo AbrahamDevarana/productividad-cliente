@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom"
-import { logoutAction, getUserAction } from '../actions/authActions'
+import { logoutAction, validateLoginAction } from '../actions/authActions'
 import tokenAuth from '../config/tokenAuth'
 
 import Sidebar from '../components/Menu/Sidebar'
@@ -10,35 +10,46 @@ import { Dropdown, Menu, Modal } from 'antd'
 
 import { AiOutlinePlus } from 'react-icons/ai'
 import NuevaTareaForm from '../components/Forms/NuevaTareaForm'
+import AuthProvider from '../provider/AuthProvider'
 
 
 const LayoutApp = ({children}) => {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const auth = AuthProvider()
+
+    useEffect(() => {
+        dispatch(validateLoginAction(auth))
+    }, [auth])
+
+    const isAuthenticated = useSelector( state => state.login.isAuthenticated)
+    const loading = useSelector( state => state.login.loading)
+    const tkn = localStorage.getItem('auth-token')
+
+    tokenAuth(tkn)
+
+    if(!isAuthenticated && !loading) {
+        navigate("/login")
+    }
     
-    // const { auth } = useSelector( state => state.auth)
-
-    // const dispatch = useDispatch()
-    // const navigate = useNavigate()
-
-
-    // const tkn = localStorage.getItem('Bearer')
-    // tokenAuth(tkn)
-
     // useEffect( () => {
-    //     if ( !auth && !tkn){
+    //     if ( !isLogged && !tkn){
     //         if(tkn === null){
     //             navigate("/login")
     //         }
     //     }
-        
     //     dispatch(getUserAction())
-        
     //     // eslint-disable-next-line
-    // }, [tkn])
+    // }, [tkn, isLogged])
 
-    // const logOut = () => {
-    //     dispatch(logoutAction())
-    //     navigate('/login')
-    // }
+
+
+    const logOut = () => {
+        dispatch(logoutAction())
+        navigate('/login')
+    }
 
     
     const [visible, setVisible] = useState({
@@ -130,12 +141,12 @@ const LayoutApp = ({children}) => {
 
     return ( 
     <>
-        <div className='w-full'>    
-            <div className='bg-devarana-background w-full min-h-screen overflow-hidden'>
-                    <Navbar active={active} isActive={isActive} />
+        <div className='w-full'>  
+            <div className='bg-devarana-background w-full min-h-screen'>
                 <div className="flex relative">
-                    <Sidebar active={active} />
-                    <div className={`p-4 transition-all duration-500 ease-in-out w-full ml-auto relative`}> 
+                    <Sidebar active={active}/>
+                    <div className={`p-4 transition-all duration-300 ease-in-out ${active? "layout-size-80 hover:layout-size-250":"layout-size-250"} w-full relative `}> 
+                        <Navbar active={active} isActive={isActive} />
                         {children}
 
                         <div className='fixed bottom-10 right-10'>

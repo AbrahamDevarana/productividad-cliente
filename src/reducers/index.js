@@ -4,6 +4,7 @@ import tareaReducer from './tareaReducer';
 import userReducer from './userReducer';
 import estatusReducer from './estatusReducer';
 import tipoReducer from './tipoReducer';
+import perspectivaReducer from './perspectivaReducer';
 
 
 
@@ -13,5 +14,6 @@ export default combineReducers({
     tareas: tareaReducer,
     users: userReducer,
     estatus: estatusReducer,
-    tipoAccion: tipoReducer
+    tipoAccion: tipoReducer,
+    perspectivas: perspectivaReducer
 });

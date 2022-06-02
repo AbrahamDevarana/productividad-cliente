@@ -15,6 +15,19 @@ export function loginAction(){
     }
 }
 
+export function regularLoginAction(form){
+    return async (dispatch) => {
+        dispatch(loginRequest())
+        try {
+            const res = await clientAxios.post('/login', form)
+            dispatch(loginSuccess(res.data))
+        } catch (error) {
+            dispatch(loginError(error.response.data))
+        }          
+    }
+}
+
+
 const loginSuccess = payload => ({
     type: types.LOGIN_SUCCESS,
     payload
@@ -30,6 +43,23 @@ const loginRequest = () => ({
 })
 
 
+export function validateLoginAction(auth){
+    return async (dispatch) => {
+        if(auth){
+            dispatch({
+                type: types.LOGIN_VALIDATION_SUCCESS,
+                payload: auth
+            })
+        }else{
+            dispatch({
+                type: types.LOGIN_VALIDATION_ERROR,
+            })
+        }
+
+    }
+}
+
+
 // Logout
 
 export function logoutAction(){
@@ -38,25 +68,19 @@ export function logoutAction(){
     }
 }
 
-export function getUserAction(){
-    return async (dispatch) => {
-    //   const token = localStorage.getItem('token')
-    //   if(token){
-    //     tokenAuth(token)
-    //   }else{
-    //     tokenAuth('')
-    //   }
-        await clientAxios.get('/user')
-        .then( res => {
-            dispatch({
-                type: types.GET_USER,
-                payload: res.data
-            })
-        })
-        .catch( err => {
-            dispatch({
-                type: types.GET_USER,
-                payload: null
-            }) // si no hay token, no hay user
-        })
-}}
+// export function getUserAction(){
+//     return async (dispatch) => {
+//         await clientAxios.get('/login/verifyUser')
+//         .then( res => {
+//             dispatch({
+//                 type: types.GET_USER_SUCCESS,
+//                 payload: res.data
+//             })
+//         })
+//         .catch( err => {
+//             dispatch({
+//                 type: types.GET_USER_ERROR,
+//                 payload: null
+//             }) // si no hay token, no hay user
+//         })
+// }}
