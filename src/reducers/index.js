@@ -5,6 +5,7 @@ import userReducer from './userReducer';
 import estatusReducer from './estatusReducer';
 import tipoReducer from './tipoReducer';
 import perspectivaReducer from './perspectivaReducer';
+import areaReducer from './areaReducer';
 
 
 
@@ -15,5 +16,6 @@ export default combineReducers({
     users: userReducer,
     estatus: estatusReducer,
     tipoAccion: tipoReducer,
-    perspectivas: perspectivaReducer
+    perspectivas: perspectivaReducer,
+    area: areaReducer,
 });

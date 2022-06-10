@@ -38,7 +38,10 @@ const Perfil = () => {
     },[userActive]) 
 
     const [value, setValue] = useState('Perfil')
-    if(loading) return 'Cargando'
+
+    if(loading || selectedUser === null ) return 'Cargando'
+
+    
 
     return ( 
         <>
@@ -52,22 +55,10 @@ const Perfil = () => {
                         <Avatar picture="https://i.pravatar.cc/80" userName={"Colaborador"} className="m-auto"/>
                     </div>
                     <div className="my-auto px-5 md:w-fit w-full text-center md:text-left">
-                        <p className="font-bold">{`${selectedUser.name} ${selectedUser.lastName} ${selectedUser.secondLastName}`}</p>
-                        <p className="text-sm muted">Desarrollador Web | Innovación y Calidad</p>
+                        <p className="font-bold text-custom-dark2">{`${selectedUser.name} ${selectedUser.lastName} ${selectedUser.secondLastName}`} <span className="text-xs">({selectedUser.nick_name})</span></p>
+                        <p className="text-sm font-light text-custom-dark2">Desarrollador Web | Innovación y Calidad</p>
                     </div>
                     <div className="bg-devarana-background my-auto flex max-w-[400px] w-full ml-auto rounded relative z-0">
-                        {/* <div className={`transition-all rounded duration-500 shadow ease-in-out absolute sm:w-28 bg-white my-1 mx-2 top-0 right-0 bottom-0 -z-10 ${view === 1? 'left-0 w-14': view === 2 ? 'sm:left-1/3 w-20 left-16' : 'w-28 left-[54%] sm:left-2/3'}`}>
-
-                        </div> */}
-                        {/* <div onClick={ () => setView(1)} className={`w-14 sm:w-28 text-center rounded py-1 px-2 m-1.5 cursor-pointer`}>
-                            Perfil
-                        </div>
-                        <div onClick={ () => setView(2)} className={`w-18 sm:w-28 text-center rounded py-1 px-2 m-1.5 cursor-pointer`}> 
-                            Actividad 
-                        </div>
-                        <div onClick={ () => setView(3)} className={`sm:w-28 text-center rounded py-1 px-2 m-1.5 cursor-pointer`}>
-                            Configuración
-                        </div> */}
                         <Segmented
                             block={true}
                             options={[
@@ -91,7 +82,7 @@ const Perfil = () => {
                             size={"middle"}
                             value={value} 
                             onChange={setValue}
-                            className="flex w-full"
+                            className="flex w-full custom-dark2"
                         />
                     </div>
                 </Box>

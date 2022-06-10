@@ -1,5 +1,3 @@
-import Input from "../Input";
-import Textarea from "../Textarea";
 import { DatePicker, Select } from 'antd';
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsersAction } from "../../actions/userActions";
@@ -41,7 +39,7 @@ const NuevaTareaForm = () => {
 
     return ( 
         <>
-            <form action="">
+            {/* <form action="">
                 <div className="pb-4">
                     <Input inputName="nombre" placeholder="Nombre"></Input>
                 </div>
@@ -67,7 +65,7 @@ const NuevaTareaForm = () => {
                     <AntdSelect items={users} onChange={onChange} mode={"multiple"} placeholder="Selecciona Colaborador"/>
                 </div>
 
-            </form>
+            </form> */}
         </>
      );
 }

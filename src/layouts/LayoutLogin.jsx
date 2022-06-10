@@ -24,7 +24,7 @@ const LayoutLogin = ({children}) => {
 
 
     return ( 
-       <div className="w-full flex justify-center h-screen items-center bg-cover bg-[url('https://picsum.photos/3000/3000')]">
+       <div className="w-full flex justify-center bg-devarana-midnight h-screen items-center bg-cover">
            {children}
        </div>
      );

@@ -6,9 +6,9 @@ import { notification } from 'antd';
 export function getAllUsersAction(){
     return async (dispatch) => {
         dispatch(getAllUsersRequest())
-        await clientAxios.get('/users')
+        await clientAxios.get('/user')
         .then( res => {
-            dispatch(getAllUsersSuccess(res.data.data))
+            dispatch(getAllUsersSuccess(res.data))
         })
         .catch( err => {
             dispatch(getAllUsersError(err.response.data))
@@ -105,8 +105,6 @@ export function updateUserAction(data){
     }
 }
 
-
-
 const updateUserSuccess = payload => ({
     type: types.UPDATE_USER_SUCCESS,
     payload
@@ -114,5 +112,117 @@ const updateUserSuccess = payload => ({
 
 const updateUserError = payload => ({
     type: types.UPDATE_USER_ERROR,
+    payload
+})
+
+
+export function createUserAction(data){
+    return async (dispatch) => {
+        dispatch(createUserRequest())
+        await clientAxios.post(`/user`, data)
+        .then( res => {
+            console.log(res);
+            dispatch(createUserSuccess(res.data.user))
+            notification['success']({
+                message: res.data.msg,
+            });
+        })
+        .catch( err => {
+            console.log(err.response);
+            dispatch(createUserError(err.response.data))
+            notification['error']({
+                message: err.response.data,
+            });
+        })
+    }
+}
+
+const createUserRequest = () => ({
+    type: types.CREATE_USER
+})
+
+const createUserSuccess = payload => ({
+    type: types.CREATE_USER_SUCCESS,
+    payload
+})
+
+const createUserError = payload => ({
+    type: types.CREATE_USER_ERROR,
+    payload
+})
+
+
+/// Related User Actions -- TODO find a different way to do this
+export function addResponsabilityAction(data){
+    return async (dispatch) => {
+        dispatch(addResponsability(data))
+        await clientAxios.post(`/user/responsabilidad`, data)
+        .then( res => {
+            console.log(res.data.responsabilidad);
+            dispatch(addResponsabilitySuccess(res.data.responsabilidad))
+            notification['success']({
+                message: res.data.msg,
+            });
+        })
+        .catch( err => {
+            console.log(err.response);
+            dispatch(addResponsabilityError(err.response.data))
+            notification['error']({
+                message: err.response.data,
+            });
+        })
+    }
+}
+
+
+const addResponsability = (payload) => ({
+    type: types.ADD_RESPONSABILITY,
+    payload
+})
+
+const addResponsabilitySuccess = (payload) => ({
+    type: types.ADD_RESPONSABILITY_SUCCESS,
+    payload
+})
+
+const addResponsabilityError = (payload) => ({
+    type: types.ADD_RESPONSABILITY_ERROR,
+    payload
+})
+
+
+export function deleteResponsabilityAction(id) {
+    return async (dispatch) => {
+        dispatch(deleteResponsability(id))
+        await clientAxios.delete(`/user/responsabilidad/${id}`,)
+        .then( res => {
+            console.log(res.data)
+            dispatch(deleteResponsabilitySuccess(res.data))
+            notification['success']({
+                message: res.data.msg,
+            });
+        })
+        .catch( err => {
+            console.log(err.response);
+            dispatch(deleteResponsabilityError(err.response.data))
+            notification['error']({
+                message: err.response.data,
+            });
+        })
+    }
+}
+
+const deleteResponsability = (payload) => ({
+    type: types.DELETE_RESPONSABILITY,
+    payload
+})
+
+const deleteResponsabilitySuccess = (payload) => ({
+    type: types.DELETE_RESPONSABILITY_SUCCESS,
+    payload
+})
+
+const deleteResponsabilityError = (payload) => ({
+    type: types.DELETE_RESPONSABILITY_ERROR,
     payload
 })

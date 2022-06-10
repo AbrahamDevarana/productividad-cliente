@@ -15,14 +15,13 @@ const Sidebar = (props) => {
 
 
     return ( 
-    <aside className={` ${active? "max-w-[80px] hover:max-w-[250px] z-50" : "max-w-[250px]" } group m-3 max-h-screen relative transition-all duration-300 ease-in-out w-full`}>
-        <div className={`gradient-black rounded p-5 flex flex-col fixed sidebar-h ${active? "max-w-[80px] hover:max-w-[250px]" : "max-w-[250px]" } transition-all duration-300 ease-in-out w-full`}>
+    <aside className={`sm:left-0 -left-72 ${active? "left-0 max-w-[80px] hover:max-w-[250px] z-50" : "max-w-[250px] " } group m-3 max-h-screen transition-all duration-300 ease-in-out w-full fixed`}>
+        <div className={`gradient-black rounded-ext p-5 flex flex-col sidebar-h transition-all duration-300 ease-in-out w-full`}>
             <a href="" className='text-center text-white'>Logo</a>
             <div className='divider w-full h-0.5'></div>
             <Link to={"/perfil"} className={`text-center text-white flex align-middle items-center ${ active ? "justify-center" : "ml-1"}`}>
-                <Avatar className="w-8 h-8" /> <span className={ `${ active ? "hidden" : ""} mx-auto group-hover:block` }> {`${userAuth? `${userAuth.name} ${userAuth.lastName}`  : ''}`} </span>
+                <Avatar className="w-8 h-8" /> <span className={ `${ active ? "hidden" : ""} mx-auto group-hover:block` }> {`${userAuth? `${userAuth.nick_name  || userAuth.name + ' ' + userAuth.lastName}`  : ''}`} </span>
             </Link>
-
             <div className='divider w-full h-0.5'></div>
             <Link to={"/"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}>
                 <AiFillApple /><span className={ `${ active ? "hidden" : ""} group-hover:block text-white px-4` }> Actividades </span>
@@ -31,7 +30,7 @@ const Sidebar = (props) => {
                 <AiFillApple /><span className={ `${ active ? "hidden" : ""} group-hover:block text-white px-4` }> Proyectos </span>
             </Link>
             <div className='divider w-full h-0.5'></div>
-            <Link to={"/"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}>
+            <Link to={"/somos-devarana"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}>
                 <AiFillApple /><span className={ `${ active ? "hidden" : ""} group-hover:block text-white px-4` }> Somos DEVARANA </span>
             </Link>
             <Link to={"/"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}>
@@ -47,13 +46,14 @@ const Sidebar = (props) => {
                     <AiOutlineSetting /><span className={ `${ active ? "hidden" : "" } group-hover:block text-white px-4 text-center` }> Configuración </span>
                     { <AiFillCaretDown className={`transition duration-300 ease-in-out ${config ? 'rotate-180' : ''}  ${ active ? "hidden" : "" } group-hover:block`} /> }
                 </button>
-                <div className={ `transition-height duration-300 ease-in-out overflow-hidden ${config? 'h-28' : 'h-0'}` }>
+                <div className={ `transition-height duration-300 ease-in-out overflow-y-auto ${config? 'h-28' : 'h-0'}` }>
                     <div className="py-2">
-                        <Link to={"/"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}> 
-                            <FiUsers /><span className={ `${ active ? "hidden" : ""} group-hover:block text-white px-4 text-center` }> Usuarios </span>
+                      
+                        <Link to={"/colaboradores"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}> 
+                            <FiUsers /><span className={ `${ active ? "hidden" : ""} group-hover:block text-white px-4 text-center font-light` }> Colaboradores </span>
                         </Link>
-                        <Link to={"/"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}> 
-                            <FiUsers /><span className={ `${ active ? "hidden" : ""} group-hover:block text-white px-4 text-center` }> Equipos </span>
+                        <Link to={"/colaboradores"} className={`flex items-center py-2 text-2xl text-white ${ active ? "justify-center" : ""} group-hover:justify-start`}> 
+                            <FiUsers /><span className={ `${ active ? "hidden" : ""} group-hover:block text-white px-4 text-center font-light` }> Roles y Permisos </span>
                         </Link>
                     </div>
                 </div>

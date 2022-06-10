@@ -12,38 +12,6 @@ const Home = () => {
         { order: "4", width: "4/12", content:'panel 4'},
         { order: "4", width: "4/12", content:'panel 4'},
         { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
-        { order: "4", width: "4/12", content:'panel 4'},
     ])
 
     useEffect( () => {
@@ -68,9 +36,9 @@ const Home = () => {
         <div className="py-5">
 
             <div className="flex flex-1 flex-wrap gap-3">
-                { windowWidth.map( item => (
+                { windowWidth.map( (item, i) => (
                     
-                    <div className={`resize-x shadow rounded bg-white p-4 w-${item.width} order-${item.order} `}>
+                    <div key={i} className={`resize-x shadow rounded bg-white p-4 w-${item.width} order-${item.order} `}>
                         {item.content}
                     </div>
                     

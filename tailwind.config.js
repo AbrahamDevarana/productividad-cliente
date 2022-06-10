@@ -10,6 +10,24 @@ module.exports = {
 
       },
       colors:{
+
+        'custom-gray': '#A6AFC3',
+        'custom-gray2': '#F9F9F7',
+        'custom-dark': '#2E3136',
+        'custom-dark2': '#656A76',
+        'custom-blue': '#0967C9',
+        'custom-blue2': '#408FE3',
+        'custom-yellow': '#F0E438',
+        'custom-yellow2': '#F3ED90',
+        'custom-orange': '#F09814',
+        'custom-orange2': '#F3B860',
+        'custom-green': '#11C31C',
+        'custom-green2': '#75DD7B',
+        'custom-pink': '#E51141',
+        'custom-pink2': '#FF6E8F',
+        'custom-red': '#CB0007',
+        'custom-red2': '#EC4D49',
+
         'devarana-background':'#F3F6F9',
         'devarana-blue' : '#56739B',
         'devarana-babyblue' : '#a9c0e4',
@@ -29,7 +47,10 @@ module.exports = {
         'width': 'width',
         'max-width': 'max-width',
         'objectPosition': 'objectPosition',
-      },      
+      },
+      borderRadius: {
+        'ext' : '10px'
+      },
     },
   },
   plugins: [],

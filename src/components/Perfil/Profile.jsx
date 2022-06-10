@@ -1,6 +1,6 @@
 import Badge from "../Elements/Badge";
 import Box from "../Elements/Box";
-
+import Button from '../Elements/Button'
 import {AiFillAlert, AiFillAliwangwang, AiFillBug, AiFillCustomerService} from 'react-icons/ai'
 import {AiFillLinkedin, AiFillInstagram, AiFillTwitterSquare, AiFillFacebook } from 'react-icons/ai'
 import DoughnutChart from "../Charts/Doughnut";
@@ -11,54 +11,54 @@ const Profile = ({selectedUser}) => {
     return ( 
     <>
         <div className="grid grid-cols-4 gap-10 pt-10">
-            <Box className="xl:col-span-1 col-span-2">
+            <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
             <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
-                <Badge className="bg-gradient-to-tr from-blue-600 to-blue-400  -mt-10">
+                <Badge badgeType="primary" className="-mt-10">
                     <AiFillCustomerService/>
                 </Badge>
-                <div className="sm:text-right text-center sm:py-0 pt-4">
-                    <p className=" font-light">Progreso General</p>
-                    <h1 className="text-2xl">15 %</h1>
+                <div className="sm:text-right text-center sm:py-0 pt-">
+                    <p className="text-custom-dark2 font-light">Progreso General</p>
+                    <h1 className="text-2xl text-custom-dark">15 %</h1>
                 </div>
             </div>
             {/* <div className="divider-2"></div>
             <p className="font-light sm:text-left text-center"> No sé que poner aquí </p> */}
             </Box>
-            <Box className="xl:col-span-1 col-span-2">
+            <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
                 <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
-                    <Badge className="bg-gradient-to-tr from-orange-600 to-orange-400 -mt-10">
+                    <Badge className="-mt-10" badgeType="warning">
                         <AiFillAlert/>
                     </Badge>
-                    <div className="sm:text-right text-center sm:py-0 pt-4">
-                        <p className=" font-light">Objetivos</p>
-                        <h1 className="text-2xl">5</h1>
+                    <div className="sm:text-right text-center sm:py-0 pt-">
+                        <p className="text-custom-dark2 font-light">Objetivos</p>
+                        <h1 className="text-2xl text-custom-dark">5</h1>
                     </div>
                 </div>
                 <div className="divider-2"></div>
                 {/* <p className="font-light sm:text-left text-center"> No sé que poner aquí </p> */}
-                <button className="py-2 px-4 block w-full"> Más Información </button>
+                <Button btnType="secondary-outline" className="w-full block" >  Más Información </Button>
             </Box>
-            <Box className="xl:col-span-1 col-span-2">
+            <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
                 <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
-                    <Badge className="bg-gradient-to-tr from-red-600 to-red-400  -mt-10">
+                    <Badge className="-mt-10" badgeType="danger">
                         <AiFillAliwangwang/>
                     </Badge>
-                        <div className="sm:text-right text-center sm:py-0 pt-4">
-                            <p className=" font-light">Resultados Claves</p>
-                            <h1 className="text-2xl">14</h1>
+                        <div className="sm:text-right text-center sm:py-0 pt-">
+                            <p className="text-custom-dark2 font-light">Resultados Claves</p>
+                            <h1 className="text-2xl text-custom-dark">14</h1>
                         </div>
                 </div>
                 {/* <div className="divider-2"></div>
                 <p className="font-light sm:text-left text-center"> No sé que poner aquí </p> */}
             </Box>
-            <Box className="xl:col-span-1 col-span-2">
+            <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
                 <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
-                    <Badge className="bg-gradient-to-tr from-green-600 to-green-400  -mt-10">
+                    <Badge className="-mt-10" badgeType="success">
                         <AiFillBug/>
                     </Badge>
                     <div className="sm:text-right text-center sm:py-0 pt-4">
-                        <p className=" font-light">Proyectos</p>
-                        <h1 className="text-2xl">45</h1>
+                        <p className=" font-light text-custom-dark2">Proyectos</p>
+                        <h1 className="text-2xl text-custom-dark">45</h1>
                     </div>
                 </div>
                 {/* <div className="divider-2"></div>
@@ -71,34 +71,35 @@ const Profile = ({selectedUser}) => {
                 <h1 className="py-2 text-2xl">Información de perfil</h1>
 
                 <div className="py-4 font-light">
+                    <p className="font-bold py-2 text-custom-dark2">Acerca de mí</p>
                     <p>
                         { selectedUser.profile_description }
                     </p>
                 </div>
                 <div>
-                    <p className="font-bold py-2">
+                    <p className="font-bold py-2 text-custom-dark2">
                         Nombre: 
                         <span className="font-light"> {`${selectedUser.name} ${selectedUser.lastName} ${selectedUser.secondLastName} ` } </span>
                     </p>
                 </div>
                 <div>
-                    <p className="font-bold py-2">
+                    <p className="font-bold py-2 text-custom-dark2">
                         Teléfono: 
                         <span className="font-light"> {selectedUser.phone  } </span>
                     </p>
                 </div>
                 <div>
-                    <p className="font-bold py-2">Email: 
+                    <p className="font-bold py-2 text-custom-dark2">Email: 
                     <span className="font-light"> {selectedUser.email } </span></p>
                 </div>
                 <div>
-                    <p className="font-bold py-2">
+                    <p className="font-bold py-2 text-custom-dark2">
                         Fecha de Ingreso: 
                         <span className="font-light"> {moment(selectedUser.admission_date).format("LL") } </span>
                     </p>
                 </div>
                 <div>
-                    <p className="font-bold py-2 flex">Social: </p>
+                    <p className="font-bold py-2 text-custom-dark2 flex">Social: </p>
                     <div className="flex px-2">
                         { selectedUser.social_linkedin? <AiFillLinkedin className="text-2xl" /> : null }
                         { selectedUser.social_facebook? < AiFillFacebook className="text-2xl" /> : null }
@@ -109,7 +110,7 @@ const Profile = ({selectedUser}) => {
                     {/* <span className="font-light"> No registradas </span> */}
                 </div>
                 <div>
-                   <p className="font-bold py-2"> Originario: 
+                   <p className="font-bold py-2 text-custom-dark2"> Originario: 
                     <span className="font-light"> Toluca </span></p>
                 </div>
             </Box>
@@ -138,7 +139,7 @@ const Profile = ({selectedUser}) => {
                     <p className="font-light">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
 
                     <div className="py-3 grid grid-cols-2 gap-x-5">
-                        <button className="py-2 px-4 "> Ver Proyecto </button>
+                        <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
                             <Avatar className="w-7 h-7"/>
                             <Avatar className="w-7 h-7"/>
@@ -163,7 +164,7 @@ const Profile = ({selectedUser}) => {
                     <h2 className="py-3">Desarrollo Web</h2>
                     <p className="font-light">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
                     <div className="py-3 grid grid-cols-2 gap-x-5">
-                        <button className="py-2 px-4 "> Ver Proyecto </button>
+                        <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
                             <Avatar className="w-7 h-7"/>
                             <Avatar className="w-7 h-7"/>
@@ -188,7 +189,7 @@ const Profile = ({selectedUser}) => {
                     <h2 className="py-3">Desarrollo Web</h2>
                     <p className="font-light">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
                     <div className="py-3 grid grid-cols-2 gap-x-5">
-                        <button className="py-2 px-4 "> Ver Proyecto </button>
+                        <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
                             <Avatar className="w-7 h-7"/>
                             <Avatar className="w-7 h-7"/>
@@ -215,7 +216,7 @@ const Profile = ({selectedUser}) => {
                     <h2 className="py-3">Desarrollo Web</h2>
                     <p className="font-light">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto.</p>
                     <div className="py-3 grid grid-cols-2 gap-x-5">
-                        <button className="py-2 px-4 "> Ver Proyecto </button>
+                        <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
                             <Avatar className="w-7 h-7"/>
                             <Avatar className="w-7 h-7"/>

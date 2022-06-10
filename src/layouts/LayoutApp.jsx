@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom"
 import { logoutAction, validateLoginAction } from '../actions/authActions'
@@ -23,6 +23,7 @@ const LayoutApp = ({children}) => {
     useEffect(() => {
         dispatch(validateLoginAction(auth))
     }, [auth])
+
 
     const isAuthenticated = useSelector( state => state.login.isAuthenticated)
     const loading = useSelector( state => state.login.loading)
@@ -145,13 +146,13 @@ const LayoutApp = ({children}) => {
             <div className='bg-devarana-background w-full min-h-screen'>
                 <div className="flex relative">
                     <Sidebar active={active}/>
-                    <div className={`p-4 transition-all duration-300 ease-in-out ${active? "layout-size-80 hover:layout-size-250":"layout-size-250"} w-full relative `}> 
+                    <div className={`p-4 transition-all duration-300 ease-in-out ml-auto ${active? "layout-size-90 group-hover:layout-size-260":"layout-size-260"} w-full relative `}> 
                         <Navbar active={active} isActive={isActive} />
                         {children}
 
                         <div className='fixed bottom-10 right-10'>
                             <Dropdown overlay={menu} trigger={['click']} placement="topRight">
-                                <button className='shadow-[0px_2px_2px_rgba(0,0,0,.35)] px-4 py-2 bg-white hover:bg-devarana-blue rounded-sm hover:text-white font-bold transition-all duration-300 ease-in-out inline-flex align-middle'><AiOutlinePlus className='my-auto mx-1'/> Crear</button>
+                                <button className='shadow-[0px_2px_2px_rgba(0,0,0,.35)] px-4 py-2 bg-white hover:bg-devarana-blue rounded-ext hover:text-white font-bold transition-all duration-300 ease-in-out inline-flex align-middle'><AiOutlinePlus className='my-auto mx-1'/> Crear</button>
                             </Dropdown>
 
                             <Modal

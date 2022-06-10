@@ -8,7 +8,7 @@ const AntdNotificacion = ({errors, errorType}) => {
         let type = ''
         switch (errorType) {
             case 1:
-                descriptionText = Object.values(errors).map( (item,key) => <p key={key}>{item.msg ?? item }</p>)
+                descriptionText = Object.values(errors).map( (item,key) => <p key={key}>{item.msg || item } </p>)
                 message = 'Error'
                 type = 'error'
             break;

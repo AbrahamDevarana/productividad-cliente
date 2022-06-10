@@ -15,7 +15,7 @@ export default function AuthProvider(){
 
     useEffect(() => {
         checkUserLogin(setAuth)
-    },[])
+    }, [])
 
     return auth
 }

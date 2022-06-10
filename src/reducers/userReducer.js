@@ -13,10 +13,11 @@ export default (state = initialState, action) => {
         case types.GET_ALL_USERS:
         case types.GET_USER:
         case types.SEARCH_USER:
-            return {
-                ...state,
-                loading: true,
-            }
+        case types.CREATE_USER:
+        return {
+            ...state,
+            loading: true,
+        }
         case types.GET_ALL_USERS_SUCCESS:
             return {
                 ...state,
@@ -24,9 +25,11 @@ export default (state = initialState, action) => {
                 loading: false,
                 error: null,
             }
-        case types.GET_ALL_USERS_ERROR:
-        case types.UPDATE_USER_ERROR:
-        case types.SEARCH_USER_ERROR:
+            case types.GET_ALL_USERS_ERROR:
+            case types.UPDATE_USER_ERROR:
+            case types.SEARCH_USER_ERROR:
+            case types.CREATE_USER_ERROR:
+            case types.ADD_RESPONSABILITY_ERROR:
             return {
                 ...state,
                 loading: false,
@@ -66,6 +69,29 @@ export default (state = initialState, action) => {
                 error: null,
                 user: action.payload,
             }
+        case types.CREATE_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                user: action.payload,
+            }
+
+        case types.ADD_RESPONSABILITY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                user: state.user.id === action.payload.user_id ? {...state.user, responsabilidades: [...state.user.responsabilidades, action.payload]} : state.user,
+            }
+        case types.DELETE_RESPONSABILITY_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: null,
+                user: state.user.id === action.payload.user_id ? {...state.user, responsabilidades: state.user.responsabilidades.filter(responsabilidade => responsabilidade.id !== action.payload.id)} : state.user,
+            }
+
         default:
             return state
     }
