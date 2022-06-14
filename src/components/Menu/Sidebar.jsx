@@ -13,10 +13,12 @@ const Sidebar = (props) => {
 
     const [config, setConfig] = useState(false)
 
+    console.log(active);
+
 
     return ( 
-    <aside className={`sm:left-0 -left-72 ${active? "left-0 max-w-[80px] hover:max-w-[250px] z-50" : "max-w-[250px] " } group m-3 max-h-screen transition-all duration-300 ease-in-out w-full fixed`}>
-        <div className={`gradient-black rounded-ext p-5 flex flex-col sidebar-h transition-all duration-300 ease-in-out w-full`}>
+    <aside className={`group transition-all duration-300 ease-in-out m-3 sm:left-0 -left-72 w-full fixed ${active? "w-[80px] sm:hover:w-[250px] fixed z-50 " : "w-[250px] left-0 z-50"}`}>
+        <div className={`gradient-black rounded-ext p-5 flex flex-col sidebar-h transition-all duration-300 ease-in-out w-full overflow-auto`}>
             <a href="" className='text-center text-white'>Logo</a>
             <div className='divider w-full h-0.5'></div>
             <Link to={"/perfil"} className={`text-center text-white flex align-middle items-center ${ active ? "justify-center" : "ml-1"}`}>

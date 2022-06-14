@@ -140,7 +140,6 @@ const LayoutApp = ({children}) => {
                     <div className={`p-4 transition-all duration-300 ease-in-out ml-auto ${active? "layout-size-90 group-hover:layout-size-260":"layout-size-260"} w-full relative `}> 
                         <Navbar active={active} isActive={isActive} />
                         {children}
-
                         <div className='fixed bottom-10 right-10'>
                             <Dropdown overlay={menu} trigger={['click']} placement="topRight">
                                 <button className='shadow-[0px_2px_2px_rgba(0,0,0,.35)] px-4 py-2 bg-white hover:bg-devarana-blue rounded-ext hover:text-white font-bold transition-all duration-300 ease-in-out inline-flex align-middle'><AiOutlinePlus className='my-auto mx-1'/> Crear</button>

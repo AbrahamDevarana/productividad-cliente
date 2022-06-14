@@ -102,11 +102,15 @@ p, li, span, a{
 
 
 .layout-size-90{
-	max-width: calc(100% - 90px);
+	@media (min-width: $breakpoint-sm) {
+		max-width: calc(100% - 90px);
+	}
 }
 
 .layout-size-260{
-	max-width: calc(100% - 260px);
+	@media (min-width: $breakpoint-sm) {
+		max-width: calc(100% - 260px);
+	}
 }
 
 
