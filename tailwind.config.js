@@ -40,7 +40,7 @@ module.exports = {
         'devarana-salmon' : '#fabcab',
       },
       fontSize: {
-        base: ['16px', '24px'],
+        base: ['14px', '24px'],
       },
       transitionProperty: {
         'height': 'height',
@@ -51,6 +51,7 @@ module.exports = {
       borderRadius: {
         'ext' : '10px'
       },
+      
     },
   },
   plugins: [],

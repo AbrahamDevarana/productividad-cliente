@@ -1,12 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllAreasAction } from "../../../actions/areaActions";
+import { deleteAreaAction, getAllAreasAction } from "../../../actions/areaActions";
 import Box from "../../../components/Elements/Box";
-import { Button, Input, Space, Table } from "antd";
+import Button from "../../../components/Elements/Button";
+import { Input, Space, Table, Modal, notification } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import { Link, useNavigate } from "react-router-dom";
+
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 const Areas = () => {
-    
+
+    const { confirm } = Modal;
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const areas = useSelector( state => state.area.areas)
     const loading = useSelector( state => state.area.loading)
 
@@ -24,23 +30,22 @@ const Areas = () => {
 
     // Table
     const [dataSource, setDataSource] = useState()
-    const [ areaFilter , setAreaFilter] = useState()
     
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
 
-    const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {    
         confirm();
-        // setSearchText(selectedKeys[0]);
-        // setSearchedColumn(dataIndex);
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
     };
 
-    const handleReset = (clearFilters) => {
+    const handleReset = (clearFilters, confirm) => {
         clearFilters();
         setSearchText('');
+        confirm();
     };
-
     
     const getColumnSearchProps = (dataIndex) => ({
         filterDropdown: ({
@@ -67,26 +72,18 @@ const Areas = () => {
                 display: "block"
               }}
             />
-            <Space>
+            <Space className="justify-between flex">
               <Button
-                type="primary"
-                onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                icon={<SearchOutlined />}
-                size="small"
-                style={{
-                  width: 90
-                }}
+                btnType="secondary"
+                fn={() => handleSearch(selectedKeys, confirm, dataIndex)}
+              
               >
-                Search
+                Buscar
               </Button>
               <Button
-                onClick={() => clearFilters && handleReset(clearFilters)}
-                size="small"
-                style={{
-                  width: 90
-                }}
+                fn={() => clearFilters && handleReset(clearFilters, confirm)}
               >
-                Reset
+                Limpiar
               </Button>
             </Space>
           </div>
@@ -108,6 +105,29 @@ const Areas = () => {
     });
 
 
+	const showDeleteConfirm = (id) => {
+		confirm({
+		  title: 'Estás seguro que deseas borrar esta área?',
+		  icon: <ExclamationCircleOutlined />,
+		  content: 'Se borrará el área y no se podrá recuperar',
+		  okText: 'Si',
+		  okType: 'danger',
+		  cancelText: 'No',
+	  
+		  onOk() {
+			dispatch(deleteAreaAction(id))
+			notification["success"]({
+				message: "Eliminado",
+				description: "Se ha eliminado el área correctamente"
+			})
+		  },
+	  
+		  onCancel() {
+			console.log('Cancelado');
+		  },
+		});
+	  };
+
     const columns = [
         {
           title: 'Áreas',
@@ -121,7 +141,8 @@ const Areas = () => {
           title: 'Acciones',
           dataIndex: 'acciones',
           key: 'acciones',
-          render: (data) => <div><button onClick={ () => console.log(data) }>Editar </button> <button onClick={ () => console.log(data) }>Borrar </button> </div>
+          render: (id) => <div><Button btnType="edit" fn={ () => navigate(`${id}`) } /> <Button btnType="delete" fn={ () => showDeleteConfirm(id) }>Borrar </Button> </div>,
+          width: 200,
         },
     ];
 
@@ -130,6 +151,14 @@ const Areas = () => {
     return (
     <> 
         <Box>
+        	<div className="flex justify-between pb-5">
+				<Button btnType="primary-outline" fn={()=>navigate("/colaboradores")}>
+				Volver
+				</Button>
+				<Button btnType="secondary" fn={()=>navigate("registrar")}>
+				Registrar Área
+				</Button>
+			</div>
             {
                 areas.length > 0 && dataSource && dataSource.length > 0 ?
                     <Table 

@@ -136,8 +136,8 @@ const RegistrarColaborador = () => {
                         <div className="col-span-2">
                             <div className="flex justify-between">
                             
-                            <Button btnType="secondary-outline">
-                                <Link to={ "/colaboradores" } className="hover:text-white"> Volver </Link>
+                            <Button btnType="primary-outline" fn={() => navigate("/colaboradores")}>
+                                Volver
                             </Button>
                             <Button btnType="secondary" fn={ () => handleSteps(current) }>Siguiente</Button>
                             </div>
@@ -167,7 +167,7 @@ const RegistrarColaborador = () => {
                         </div>
                         <div className="col-span-2">
                             <div className="flex justify-between">
-                                <Button btnType="secondary-outline" fn={ () => setCurrent(0) }>
+                                <Button btnType="primary-outline" fn={ () => setCurrent(0) }>
                                     Volver
                                 </Button>
                                 <Button btnType="secondary" fn={ () => handleSteps(current) }>Siguiente</Button>
@@ -287,7 +287,7 @@ const RegistrarColaborador = () => {
                         </div>
                         <div className="col-span-2">
                             <div className="flex justify-between">
-                                <Button btnType="secondary-outline" fn={ () => setCurrent(1) }>
+                                <Button btnType="primary-outline" fn={ () => setCurrent(1) }>
                                     Volver
                                 </Button>
                                 <Button btnType="secondary" fn={ () => handleSteps(3) }>Registrar</Button>

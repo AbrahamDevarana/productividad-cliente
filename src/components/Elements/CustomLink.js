@@ -29,7 +29,6 @@ const CustomLink = ({children, linkType, className, to, ...props}) => {
         }
     }
 
-    console.log(fnLink(linkType));
     return ( 
         <Link to={to || ""} className={`${fnLink(linkType).class} ${className || ""}`}>  {children} {fnLink(linkType).icon} </Link>
      );

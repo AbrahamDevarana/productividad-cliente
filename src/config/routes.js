@@ -9,9 +9,11 @@ import SomosDevarana from '../pages/SomosDevarana'
 
 
 // Colaboradores
-import RegistrarColaboradores from '../pages/Colaboradores/Registrar'
+import RegistrarColaboradores from '../pages/Colaboradores/create'
 import IndexColaboradores from '../pages/Colaboradores'
 import Areas from '../pages/Colaboradores/Areas'
+import RegistrarArea from '../pages/Colaboradores/Areas/create'
+import EditArea from '../pages/Colaboradores/Areas/edit'
 
 const routesAccess = [
     {
@@ -61,9 +63,19 @@ const routesAdmin = [
         component: IndexColaboradores
     },
     {
-        path: "/colaboradores/areas",
+        path: "/areas",
         layout: LayoutApp,
         component: Areas
+    },
+    {
+        path: "/areas/:id",
+        layout: LayoutApp,
+        component: EditArea
+    },
+    {
+        path: "/areas/registrar",
+        layout: LayoutApp,
+        component: RegistrarArea
     },
 
     // Devarana

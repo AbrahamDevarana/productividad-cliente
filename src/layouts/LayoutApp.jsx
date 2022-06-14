@@ -6,7 +6,8 @@ import tokenAuth from '../config/tokenAuth'
 
 import Sidebar from '../components/Menu/Sidebar'
 import Navbar from '../components/Menu/Navbar'
-import { Dropdown, Menu, Modal } from 'antd'
+import { Layout, Menu } from 'antd';
+import { Dropdown, Modal } from 'antd'
 
 import { AiOutlinePlus } from 'react-icons/ai'
 import NuevaTareaForm from '../components/Forms/NuevaTareaForm'
@@ -17,6 +18,8 @@ const LayoutApp = ({children}) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const {Sider, Content } = Layout;
 
     const auth = AuthProvider()
 
@@ -34,19 +37,7 @@ const LayoutApp = ({children}) => {
     if(!isAuthenticated && !loading) {
         navigate("/login")
     }
-    
-    // useEffect( () => {
-    //     if ( !isLogged && !tkn){
-    //         if(tkn === null){
-    //             navigate("/login")
-    //         }
-    //     }
-    //     dispatch(getUserAction())
-    //     // eslint-disable-next-line
-    // }, [tkn, isLogged])
-
-
-
+ 
     const logOut = () => {
         dispatch(logoutAction())
         navigate('/login')

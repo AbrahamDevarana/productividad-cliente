@@ -12,7 +12,7 @@ const Profile = ({selectedUser}) => {
     <>
         <div className="grid grid-cols-4 gap-10 pt-10">
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
-            <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
+            <div className="flex sm:justify-between justify-center flex-wrap">
                 <Badge badgeType="primary" className="-mt-10">
                     <AiFillCustomerService/>
                 </Badge>
@@ -25,7 +25,7 @@ const Profile = ({selectedUser}) => {
             <p className="font-light sm:text-left text-center"> No sé que poner aquí </p> */}
             </Box>
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
-                <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
+                <div className="flex sm:justify-between justify-center flex-wrap">
                     <Badge className="-mt-10" badgeType="warning">
                         <AiFillAlert/>
                     </Badge>
@@ -34,12 +34,9 @@ const Profile = ({selectedUser}) => {
                         <h1 className="text-2xl text-custom-dark">5</h1>
                     </div>
                 </div>
-                <div className="divider-2"></div>
-                {/* <p className="font-light sm:text-left text-center"> No sé que poner aquí </p> */}
-                <Button btnType="secondary-outline" className="w-full block" >  Más Información </Button>
             </Box>
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
-                <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
+                <div className="flex sm:justify-between justify-center flex-wrap">
                     <Badge className="-mt-10" badgeType="danger">
                         <AiFillAliwangwang/>
                     </Badge>
@@ -52,7 +49,7 @@ const Profile = ({selectedUser}) => {
                 <p className="font-light sm:text-left text-center"> No sé que poner aquí </p> */}
             </Box>
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
-                <div className="flex sm:justify-between justify-center pb-8 flex-wrap">
+                <div className="flex sm:justify-between justify-center flex-wrap">
                     <Badge className="-mt-10" badgeType="success">
                         <AiFillBug/>
                     </Badge>
@@ -68,10 +65,9 @@ const Profile = ({selectedUser}) => {
 
         <div className="grid grid-cols-3 gap-10 pt-10">
             <Box className="xl:col-span-1 col-span-3">
-                <h1 className="py-2 text-2xl">Información de perfil</h1>
+                <h1 className="py-2 text-2xl">Sobre Mí</h1>
 
                 <div className="py-4 font-light">
-                    <p className="font-bold py-2 text-custom-dark2">Acerca de mí</p>
                     <p>
                         { selectedUser.profile_description }
                     </p>
