@@ -5,7 +5,7 @@ import {types} from '../types'
 export function loginAction(){
     return async (dispatch) => {
         dispatch(loginRequest())
-        clientAxios.get('/login/google', )
+        clientAxios.get('/auth/google', )
         .then( res => {
             dispatch(loginSuccess(res.data))
         })

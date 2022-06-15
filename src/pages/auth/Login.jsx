@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { regularLoginAction } from '../../actions/authActions';
+import { loginAction, regularLoginAction } from '../../actions/authActions';
 import Logo from '../../assets/img/logos/devarana_login.svg'
 import AntdNotificacion from '../../components/Antd/AntdNotification';
 import { notification} from 'antd';
+import {Link} from 'react-router-dom'
 
 import Box from '../../components/Elements/Box'
 import Button from '../../components/Elements/Button';
@@ -64,6 +65,9 @@ const Login = () => {
                         <Button type="submit" btnType="secondary" className="block w-full"> Empezar </Button>    
                     </div>
                 </form>
+
+                
+                    <Button type="button" btnType="secondary" className="block w-full my-2" fn={() => dispatch(loginAction())}> Empezar Google </Button>    
             </div>
 
         </Box>
