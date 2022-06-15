@@ -2,6 +2,7 @@ import {AiOutlineMenu, AiOutlineMenuFold, AiOutlineSetting, AiOutlineBell} from 
 import { Dropdown, Menu, Space } from 'antd';
 import { logoutAction } from '../../actions/authActions';
 import { useDispatch } from 'react-redux';
+import Box from '../Elements/Box';
 
 const Navbar = (props) => {
 
@@ -62,7 +63,7 @@ const Navbar = (props) => {
        
 
     return ( 
-        <div className='bg-white h-16 p-5 mb-4 rounded shadow transition duration-500 ease-in-out'>
+        <Box className='h-16 p-5 mb-4'>
             <div className="flex">
                 <div className='sm:ml-0 ml-auto'>
                     <button onClick={ () => isActive(!active) }> {!active? <AiOutlineMenuFold className='text-2xl'/> : <AiOutlineMenu className='text-2xl'/> } </button>
@@ -84,7 +85,7 @@ const Navbar = (props) => {
                     </Dropdown>
                 </div>
             </div>
-        </div>
+        </Box>
      );
 }
  
