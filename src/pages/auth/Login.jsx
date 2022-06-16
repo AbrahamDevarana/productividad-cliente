@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom'
 import Box from '../../components/Elements/Box'
 import Button from '../../components/Elements/Button';
 
-
+import {GoogleLogin} from 'react-google-login'
 
 const Login = () => {
 
@@ -45,6 +45,23 @@ const Login = () => {
         dispatch(regularLoginAction(login))
     }
 
+    const redirectToGoogleSSO = async() => {
+        const googleLoginUrl = `${process.env.REACT_APP_URL}/auth/google`
+        const newWindow = window.open(googleLoginUrl, "_blank", "width=500,height=600")
+
+        if(newWindow){
+            const timer = setInterval(() => {
+                if(newWindow.closed){
+                    console.log('Authenticated');
+                    if(timer){
+                        clearInterval(timer)
+                    }
+                }
+            }, 500)
+        }
+    }
+    
+
     return ( 
         <Box className="bg-white max-w-[470px] w-full">
             <Box className="-my-10 mb-3 h-28 bg-gradient-to-tr from-custom-blue to-custom-blue2 flex" >
@@ -65,9 +82,8 @@ const Login = () => {
                         <Button type="submit" btnType="secondary" className="block w-full"> Empezar </Button>    
                     </div>
                 </form>
-
-                
-                    <Button type="button" btnType="secondary" className="block w-full my-2" fn={() => dispatch(loginAction())}> Empezar Google </Button>    
+                    
+                    <Button type="button" btnType="secondary" className="block w-full my-2" fn={redirectToGoogleSSO}> Empezar Google </Button>    
             </div>
 
         </Box>

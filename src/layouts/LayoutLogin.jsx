@@ -24,7 +24,7 @@ const LayoutLogin = ({children}) => {
 
 
     return ( 
-       <div className="w-full flex justify-center bg-devarana-midnight h-screen items-center bg-cover">
+       <div className="w-full flex justify-center bg-devarana-midnight bg-login h-screen items-center bg-cover">
            {children}
        </div>
      );

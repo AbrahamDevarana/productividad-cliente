@@ -1,5 +1,6 @@
 import LayoutApp from '../layouts/LayoutApp'
 import LayoutLogin from '../layouts/LayoutLogin'
+import LayoutEmpty from '../layouts/LayoutEmpty'
 import Login from '../pages/auth/Login'
 import Error404 from '../pages/Error404'
 import Home from '../pages/Home'
@@ -14,6 +15,8 @@ import IndexColaboradores from '../pages/Colaboradores'
 import Areas from '../pages/Colaboradores/Areas'
 import RegistrarArea from '../pages/Colaboradores/Areas/create'
 import EditArea from '../pages/Colaboradores/Areas/edit'
+import LoginSuccess from '../pages/auth/LoginSuccess'
+import LoginError from '../pages/auth/LoginError'
 
 const routesAccess = [
     {
@@ -26,6 +29,16 @@ const routesAccess = [
         layout: LayoutApp,
         component: Error404,
     },
+    {
+        path: "/success",
+        layout: LayoutEmpty,
+        component: LoginSuccess,
+    },
+    {
+        path: "/error",
+        layout: LayoutEmpty,
+        component: LoginError,
+    }
 ]
 
 const routesAdmin = [

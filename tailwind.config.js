@@ -10,7 +10,6 @@ module.exports = {
 
       },
       colors:{
-
         'custom-gray': '#A6AFC3',
         'custom-gray2': '#F9F9F7',
         'custom-dark': '#2E3136',
@@ -53,6 +52,9 @@ module.exports = {
       },
       boxShadow: {
         'ext' : 'rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem'
+      },
+      backgroundImage:{
+        'login': "url('./assets/img/background/Devarana-Website.jpg')"
       }
       
     },

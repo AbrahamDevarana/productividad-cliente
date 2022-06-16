@@ -7,6 +7,7 @@ export function loginAction(){
         dispatch(loginRequest())
         clientAxios.get('/auth/google', )
         .then( res => {
+            console.log(res);
             dispatch(loginSuccess(res.data))
         })
         .catch( err => {
