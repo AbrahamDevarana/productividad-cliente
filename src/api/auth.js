@@ -2,8 +2,8 @@ import jwtDecode from 'jwt-decode';
 
 
 export function getAccessToken() {
- const accessToken = localStorage.getItem('auth-token');
- if (!accessToken || accessToken === 'null') {
+ const accessToken = localStorage.getItem('accessToken');
+ if (!accessToken || accessToken === 'null' || accessToken === 'undefined') {
    return null;
  }
 

@@ -14,6 +14,8 @@ export const types = {
     SEARCH_USER_ERROR: 'SEARCH_USER_ERROR',
     
     LOGOUT:'LOGOUT',
+    LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+    LOGOUT_ERROR: 'LOGOUT_ERROR',
 
     // User
     UPDATE_USER: 'UPDATE_USER',

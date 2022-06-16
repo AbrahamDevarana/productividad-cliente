@@ -4,7 +4,8 @@ import Input from "../Elements/Input";
 import Textarea from "../Elements/Textarea";
 import { DatePicker, Divider, Switch, Popconfirm } from 'antd';
 
-import {AiOutlineUser, AiOutlineLink} from 'react-icons/ai'
+import { AiOutlineLink} from 'react-icons/ai'
+import { FaUser } from 'react-icons/fa'
 import {AiFillLinkedin, AiFillInstagram, AiFillTwitterSquare, AiFillFacebook } from 'react-icons/ai'
 
 import { useEffect, useState } from "react";
@@ -116,7 +117,7 @@ const Edit = ({selectedUser}) => {
                     <Box className="mb-5 snap-center pt-8 pb-14" id="perfil">
                         <div className="flex pb-10">
                             <Badge badgeType="pink">
-                                <AiOutlineUser/>
+                                <FaUser/>
                             </Badge>
                             <h1 className="text-2xl my-auto mx-3">Información de perfil</h1>
                         </div>    

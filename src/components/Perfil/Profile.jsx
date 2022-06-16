@@ -3,6 +3,11 @@ import Box from "../Elements/Box";
 import Button from '../Elements/Button'
 import {AiFillAlert, AiFillAliwangwang, AiFillBug, AiFillCustomerService} from 'react-icons/ai'
 import {AiFillLinkedin, AiFillInstagram, AiFillTwitterSquare, AiFillFacebook } from 'react-icons/ai'
+import { ImStatsBars2 } from 'react-icons/im'
+import { BiTargetLock } from 'react-icons/bi'
+import {   CgListTree } from 'react-icons/cg'
+import {   FaProjectDiagram } from 'react-icons/fa'
+import {   GiPodiumWinner } from 'react-icons/gi'
 import DoughnutChart from "../Charts/Doughnut";
 import Avatar from "./Avatar";
 import moment from "moment";
@@ -13,8 +18,8 @@ const Profile = ({selectedUser}) => {
         <div className="grid grid-cols-4 gap-10 pt-10">
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
             <div className="flex sm:justify-between justify-center flex-wrap">
-                <Badge badgeType="primary" className="-mt-10">
-                    <AiFillCustomerService/>
+                <Badge badgeType="secondary" className="-mt-10">
+                    <ImStatsBars2/>
                 </Badge>
                 <div className="sm:text-right text-center sm:py-0 pt-">
                     <p className="text-custom-dark2 font-light">Progreso General</p>
@@ -26,8 +31,8 @@ const Profile = ({selectedUser}) => {
             </Box>
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
                 <div className="flex sm:justify-between justify-center flex-wrap">
-                    <Badge className="-mt-10" badgeType="warning">
-                        <AiFillAlert/>
+                    <Badge className="-mt-10" badgeType="pink">
+                        <BiTargetLock/>
                     </Badge>
                     <div className="sm:text-right text-center sm:py-0 pt-">
                         <p className="text-custom-dark2 font-light">Objetivos</p>
@@ -37,8 +42,8 @@ const Profile = ({selectedUser}) => {
             </Box>
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
                 <div className="flex sm:justify-between justify-center flex-wrap">
-                    <Badge className="-mt-10" badgeType="danger">
-                        <AiFillAliwangwang/>
+                    <Badge className="-mt-10" badgeType="orange">
+                        <GiPodiumWinner/>
                     </Badge>
                         <div className="sm:text-right text-center sm:py-0 pt-">
                             <p className="text-custom-dark2 font-light">Resultados Claves</p>
@@ -50,8 +55,8 @@ const Profile = ({selectedUser}) => {
             </Box>
             <Box className="xl:col-span-1 sm:col-span-2 col-span-4">
                 <div className="flex sm:justify-between justify-center flex-wrap">
-                    <Badge className="-mt-10" badgeType="success">
-                        <AiFillBug/>
+                    <Badge className="-mt-10" badgeType="primary">
+                        <FaProjectDiagram/>
                     </Badge>
                     <div className="sm:text-right text-center sm:py-0 pt-4">
                         <p className=" font-light text-custom-dark2">Proyectos</p>

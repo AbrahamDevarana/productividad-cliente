@@ -64,24 +64,33 @@ export function validateLoginAction(auth){
 // Logout
 
 export function logoutAction(){
-    return {
-        type: types.LOGOUT
+    return async (dispatch) => {
+        try {
+            await clientAxios.get('/auth/logout')
+            dispatch(logoutSuccess())
+        } catch (error) {
+            dispatch(logoutError(error.response.data))
+        }
     }
 }
 
-// export function getUserAction(){
-//     return async (dispatch) => {
-//         await clientAxios.get('/login/verifyUser')
-//         .then( res => {
-//             dispatch({
-//                 type: types.GET_USER_SUCCESS,
-//                 payload: res.data
-//             })
-//         })
-//         .catch( err => {
-//             dispatch({
-//                 type: types.GET_USER_ERROR,
-//                 payload: null
-//             }) // si no hay token, no hay user
-//         })
-// }}
+const logoutSuccess = () => ({
+    type: types.LOGOUT_SUCCESS
+})
+
+const logoutError = payload => ({
+    type: types.LOGOUT_ERROR,
+    payload
+})
+
+export function getUserAction(){
+    return async (dispatch) => {
+        //credentials
+        await clientAxios.get('/auth/validate', { withCredentials: true })            
+        .then( res => {
+            dispatch(loginSuccess(res.data))
+        })
+        .catch( err => {
+            dispatch(loginError(err.response.data))
+        })
+}}

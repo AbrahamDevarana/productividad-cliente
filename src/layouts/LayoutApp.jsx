@@ -7,19 +7,18 @@ import tokenAuth from '../config/tokenAuth'
 import Sidebar from '../components/Menu/Sidebar'
 import Navbar from '../components/Menu/Navbar'
 import { Layout, Menu } from 'antd';
-import { Dropdown, Modal } from 'antd'
+import { Dropdown, Modal, Drawer } from 'antd'
 
 import { AiOutlinePlus } from 'react-icons/ai'
 import NuevaTareaForm from '../components/Forms/NuevaTareaForm'
 import AuthProvider from '../provider/AuthProvider'
+import Settings from '../components/Menu/Settings'
 
 
 const LayoutApp = ({children}) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
-    const {Sider, Content } = Layout;
 
     const auth = AuthProvider()
 
@@ -30,7 +29,7 @@ const LayoutApp = ({children}) => {
 
     const isAuthenticated = useSelector( state => state.login.isAuthenticated)
     const loading = useSelector( state => state.login.loading)
-    const tkn = localStorage.getItem('auth-token')
+    const tkn = localStorage.getItem('accessToken')
 
     tokenAuth(tkn)
 
@@ -51,6 +50,7 @@ const LayoutApp = ({children}) => {
     });
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [active, isActive] = useState(false)
+    const [settingVisible, setSettingVisible] = useState(false);
 
     const {state, opt, component, titulo} = visible
 
@@ -105,7 +105,11 @@ const LayoutApp = ({children}) => {
         });
     };
 
-    
+
+	const onClose = () => {
+		setSettingVisible(false);
+	};
+
       
 
     const menu = (
@@ -138,7 +142,7 @@ const LayoutApp = ({children}) => {
                 <div className="flex relative">
                     <Sidebar active={active}/>
                     <div className={`p-4 transition-all duration-300 ease-in-out ml-auto ${active? "layout-size-90 group-hover:layout-size-260":"layout-size-260"} w-full relative `}> 
-                        <Navbar active={active} isActive={isActive} />
+                        <Navbar active={active} isActive={isActive} settingVisible={settingVisible} setSettingVisible={setSettingVisible} />
                         {children}
                         <div className='fixed bottom-10 right-10'>
                             <Dropdown overlay={menu} trigger={['click']} placement="topRight">
@@ -159,6 +163,11 @@ const LayoutApp = ({children}) => {
                 </div>
             </div>
         </div>
+
+        <Drawer title="Configuración" placement="right" onClose={onClose} visible={settingVisible}>
+            <Settings/>
+        </Drawer>
+        
     </> );
 }
 

@@ -20,14 +20,15 @@ export default (state = initialState, action) => {
             }
             
         case types.LOGIN_SUCCESS:
-            localStorage.setItem('auth-token', action.payload.token)
+            localStorage.setItem('refreshToken', action.payload.refreshToken)
+            localStorage.setItem('accessToken', action.payload.accessToken)
             return {
                 ...state,
                 isAuthenticated: true,
                 user: action.payload,
                 loading: false,
                 error: null,
-                token: action.payload.token
+                token: action.payload.accessToken
             }
 
         case types.LOGIN_VALIDATION_SUCCESS:
@@ -38,8 +39,9 @@ export default (state = initialState, action) => {
                 loading: action.payload.isLoading,
             }
         case types.LOGIN_ERROR:
-        // case types.LOGIN_VALIDATION_ERROR:
-            localStorage.removeItem('auth-token')
+        case types.LOGOUT_ERROR:
+            localStorage.removeItem('refreshToken')
+            localStorage.removeItem('accessToken')
             return {
                 ...state,
                 isAuthenticated: false,
@@ -48,8 +50,9 @@ export default (state = initialState, action) => {
                 error: action.payload,
                 token: null
             }
-        case types.LOGOUT:
-            localStorage.removeItem('auth-token')
+        case types.LOGOUT_SUCCESS:
+            localStorage.removeItem('refreshToken')
+            localStorage.removeItem('accessToken')
             return {
                 ...state,
                 isAuthenticated: false,

@@ -1,4 +1,7 @@
-import {AiOutlineMenu, AiOutlineMenuFold, AiOutlineSetting, AiOutlineBell} from 'react-icons/ai'
+import {AiOutlineMenu, AiOutlineMenuFold} from 'react-icons/ai'
+import {FiLogOut } from 'react-icons/fi'
+import { FaBell } from 'react-icons/fa';
+import { GoSettings} from 'react-icons/go'
 import { Dropdown, Menu, Space } from 'antd';
 import { logoutAction } from '../../actions/authActions';
 import { useDispatch } from 'react-redux';
@@ -6,7 +9,7 @@ import Box from '../Elements/Box';
 
 const Navbar = (props) => {
 
-    const {active, isActive} = props
+    const {active, isActive, setSettingVisible} = props
     const dispatch = useDispatch()
     const menu = (
         <Menu
@@ -60,7 +63,10 @@ const Navbar = (props) => {
           ]}
         />
       );
-       
+
+    const showDrawer = () => {
+      setSettingVisible(true);
+    };
 
     return ( 
         <Box className='h-16 p-5 mb-4'>
@@ -72,14 +78,15 @@ const Navbar = (props) => {
                     <Dropdown overlay={notificaciones} trigger={['click']} className="px-2">
                         <a onClick={(e) => e.preventDefault()}>
                         <Space>
-                            <AiOutlineBell className='text-2xl'/>
+                            <FaBell className='text-2xl hover:text-custom-dark2 text-custom-dark2'/>
                         </Space>
                         </a>
                     </Dropdown>
+                    <GoSettings className='text-2xl ml-2 mr-3 cursor-pointer hover:text-custom-dark2 text-custom-dark2' onClick={ showDrawer } />
                     <Dropdown overlay={menu} trigger={['click']}>
                         <a onClick={(e) => e.preventDefault()}>
                         <Space>
-                            <AiOutlineSetting className='text-2xl'/>
+                            <FiLogOut className='text-2xl hover:text-custom-dark2 text-custom-dark2'/>
                         </Space>
                         </a>
                     </Dropdown>

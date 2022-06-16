@@ -23,6 +23,10 @@
     }
 }
 
+.ant-menu-light .ant-menu-item:hover, .ant-menu-light .ant-menu-item-active, .ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open, .ant-menu-light .ant-menu-submenu-active{
+    color: white !important;
+}
+
 
 .ant-menu-item-icon{
     @apply text-2xl #{!important};

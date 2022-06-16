@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAction, regularLoginAction } from '../../actions/authActions';
+import { getUserAction, loginAction, regularLoginAction } from '../../actions/authActions';
 import Logo from '../../assets/img/logos/devarana_login.svg'
 import AntdNotificacion from '../../components/Antd/AntdNotification';
 import { notification} from 'antd';
@@ -51,7 +51,7 @@ const Login = () => {
         if(newWindow){
             const timer = setInterval(() => {
                 if(newWindow.closed){
-                    console.log('Authenticated');
+                    dispatch(getUserAction())
                     if(timer){
                         clearInterval(timer)
                     }
@@ -69,7 +69,7 @@ const Login = () => {
             <div className="px-5 pb-10">
                 {loginError ? <AntdNotificacion errors={loginError} errorType={1} /> : null}
                 <img src={Logo} alt="Devarana Logo" className='py-4 ax-w-full block mx-auto object-cover' />                 
-                <form onSubmit={handleSubmit}>
+                {/* <form onSubmit={handleSubmit}>
                     <div className='pb-5'>
                         <h2 className='text-center font-bold text-4xl text-custom-dark2'>Bienvenido</h2>
                         <label htmlFor="">Email</label>
@@ -80,7 +80,7 @@ const Login = () => {
                     <div>
                         <Button type="submit" btnType="secondary" className="block w-full"> Empezar </Button>    
                     </div>
-                </form>
+                </form> */}
                     
                     <Button type="button" btnType="secondary" className="block w-full my-2" fn={redirectToGoogleSSO}> Empezar Google </Button>    
             </div>
