@@ -9,7 +9,6 @@ import {Link} from 'react-router-dom'
 import Box from '../../components/Elements/Box'
 import Button from '../../components/Elements/Button';
 
-import {GoogleLogin} from 'react-google-login'
 
 const Login = () => {
 
