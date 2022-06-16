@@ -52,7 +52,7 @@ const Perfil = () => {
             <div className="w-full px-4 z-10">
                 <Box className="w-full -mt-8 flex mb-5 flex-wrap gap-y-5 py-2 px-5" >
                     <div className="md:w-16 w-full">
-                        <Avatar picture="https://i.pravatar.cc/80" userName={"Colaborador"} className="m-auto"/>
+                        <Avatar picture={userActive.picture} userName={"Colaborador"} className="m-auto"/>
                     </div>
                     <div className="my-auto px-5 md:w-fit w-full text-center md:text-left">
                         <p className="font-bold text-custom-dark2">{`${selectedUser.name} ${selectedUser.lastName} ${selectedUser.secondLastName}`} </p>

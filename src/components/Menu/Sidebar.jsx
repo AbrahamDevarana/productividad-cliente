@@ -15,11 +15,13 @@ import { TbLetterP, TbLetterT, TbLetterE } from "react-icons/tb";
 const Sidebar = (props) => {
     const { active } = props
     const location = useLocation() 
+
     
     const url = location.pathname
-
+    
     const navigate = useNavigate()
     const userAuth = useSelector( state => state.login.user )
+    console.log(userAuth? userAuth.picture : '');
 
 
     function getItem(label, key, icon, children, type) {
@@ -78,7 +80,7 @@ const Sidebar = (props) => {
             <div className='divider w-full h-0.5'></div>
             
             <Link to={"/perfil"} className={`hover:text-white hover:bg-white hover:bg-opacity-50 ${url === '/perfil'? 'bg-white bg-opacity-50' : ''} rounded-ext text-center text-white flex align-middle items-center px-5 py-2 ${ active ? "justify-center px-0 group-hover:px-5" : "ml-1"}`}>
-                <Avatar className="w-8 h-8" /> <span className={ `${ active ? "hidden" : ""} mx-auto group-hover:block` }> {`${userAuth? `${userAuth.nick_name  || userAuth.name + ' ' + userAuth.lastName}`  : ''}`} </span>
+                <Avatar picture={userAuth? userAuth.picture : ''} className="w-[30px]" /> <span className={ `${ active ? "hidden" : ""} mx-auto group-hover:block` }> {`${userAuth? `${userAuth.nick_name  || userAuth.name + ' ' + userAuth.lastName}`  : ''}`} </span>
             </Link>
             <div className='divider w-full h-0.5'></div>
             <Menu
