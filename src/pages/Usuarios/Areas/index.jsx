@@ -5,8 +5,7 @@ import Box from "../../../components/Elements/Box";
 import Button from "../../../components/Elements/Button";
 import { Input, Space, Table, Modal, notification } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 const Areas = () => {
 
@@ -152,7 +151,7 @@ const Areas = () => {
     <> 
         <Box>
         	<div className="flex justify-between pb-5">
-				<Button btnType="primary-outline" fn={()=>navigate("/colaboradores")}>
+				<Button btnType="primary-outline" fn={()=>navigate("/usuarios")}>
 				Volver
 				</Button>
 				<Button btnType="secondary" fn={()=>navigate("registrar")}>

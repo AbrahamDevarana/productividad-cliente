@@ -66,7 +66,7 @@ export function validateLoginAction(auth){
 export function logoutAction(){
     return async (dispatch) => {
         try {
-            await clientAxios.get('/auth/logout')
+            await clientAxios.get('/auth/logout', {withCredentials: true})
             dispatch(logoutSuccess())
         } catch (error) {
             dispatch(logoutError(error.response.data))

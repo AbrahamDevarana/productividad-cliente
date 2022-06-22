@@ -7,7 +7,7 @@ import Avatar from "../../components/Perfil/Avatar";
 import Button from "../../components/Elements/Button"
 import Badge from "../../components/Elements/Badge";
 
-const IndexColaboradores = () => {
+const IndexUsuarios = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -40,8 +40,8 @@ const IndexColaboradores = () => {
                     <div className="col-span-2 sm:col-span-1 ">
                         <Box className="flex justify-between flex-wrap gap-5">
                             <Link to="/areas"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="primary">Áreas</Badge></Link>
-                            <Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="secondary">Dptos</Badge>
-                            <Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="pink">Puestos</Badge>
+                            <Link to="/departamentos"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="secondary">Dptos</Badge></Link>
+                            <Link to="/puestos"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="pink">Puestos</Badge></Link>
                         </Box>
                     </div>
                 </div>
@@ -52,7 +52,7 @@ const IndexColaboradores = () => {
                 <div className="col-span-2">
                     <Box className="overflow-auto">
                         <div className="flex my-2">
-                            <Button className="ml-auto" btnType="secondary" fn={ () => navigate("/colaboradores/registrar") }>
+                            <Button className="ml-auto" btnType="secondary" fn={ () => navigate("/usuarios/registrar") }>
                                Nuevo Colaborador 
                             </Button>
                             
@@ -91,4 +91,4 @@ const IndexColaboradores = () => {
      );
 }
  
-export default IndexColaboradores;
+export default IndexUsuarios;

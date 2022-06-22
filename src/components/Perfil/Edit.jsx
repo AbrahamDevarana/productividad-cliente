@@ -82,7 +82,7 @@ const Edit = ({selectedUser}) => {
     const handleSubmitPerfil = (e) => {
         e.preventDefault()
 
-        if(name.trim() === '' || email.trim() === '' || lastName.trim() === '' || secondLastName.trim() === '' ){
+        if(name.trim() === '' || email.trim() === '' ){
             notification['error']({
                 message: 'Datos Incompletos',
                 description: 'Todos tus son requeridos',

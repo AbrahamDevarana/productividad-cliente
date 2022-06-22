@@ -65,7 +65,12 @@ const Button = ({children, btnType, className, type, fn, ...props}) => {
 
 
     return ( 
-        <button type={ type || "button" } onClick={fn} className={`${ buttonType(btnType).class || buttonType(btnType) }  ${className || "" } py-2 px-4 rounded-[10px]` }>
+        <button 
+            type={ type || "button" } 
+            onClick={fn} 
+            className={`${ buttonType(btnType).class || buttonType(btnType) }  ${className || "" } 
+            py-2 px-4 rounded-[10px] transition-all duration-300 ease-in-out hover:shadow-ext` }
+        >
             {buttonType(btnType).icon || children  }
         </button>
      );

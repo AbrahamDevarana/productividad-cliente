@@ -4,7 +4,7 @@ const LoginSuccess = () => {
     useEffect(() => {
         setTimeout(() => {
             window.close()
-        }, 1500)
+        }, 100)
     })
     return ( 
         <div className="p-5 text-white text-center">

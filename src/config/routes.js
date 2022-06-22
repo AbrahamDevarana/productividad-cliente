@@ -9,14 +9,24 @@ import Tarea from '../pages/Tareas'
 import SomosDevarana from '../pages/SomosDevarana'
 
 
-// Colaboradores
-import RegistrarColaboradores from '../pages/Colaboradores/create'
-import IndexColaboradores from '../pages/Colaboradores'
-import Areas from '../pages/Colaboradores/Areas'
-import RegistrarArea from '../pages/Colaboradores/Areas/create'
-import EditArea from '../pages/Colaboradores/Areas/edit'
+// Usuarios
+import RegistrarUsuarios from '../pages/Usuarios/create'
+import IndexUsuarios from '../pages/Usuarios'
 import LoginSuccess from '../pages/auth/LoginSuccess'
 import LoginError from '../pages/auth/LoginError'
+
+
+import Areas from '../pages/Usuarios/Areas'
+import CreateAreas from '../pages/Usuarios/Areas/create'
+import EditArea from '../pages/Usuarios/Areas/edit'
+
+import Departamentos from '../pages/Usuarios/Departamentos'
+import CreateDepartamentos from '../pages/Usuarios/Departamentos/create'
+import EditDepartamentos from '../pages/Usuarios/Departamentos/edit'
+
+import Puestos from '../pages/Usuarios/Puestos'
+import EditPuestos from '../pages/Usuarios/Puestos/edit'
+import CreatePuestos from '../pages/Usuarios/Puestos/create'
 
 const routesAccess = [
     {
@@ -63,17 +73,17 @@ const routesAdmin = [
         component: Perfil
     },
 
-    // Colaboradores
+    // Usuarios
 
     {
-        path: "/colaboradores/registrar",
+        path: "/usuarios/registrar",
         layout: LayoutApp,
-        component: RegistrarColaboradores
+        component: RegistrarUsuarios
     },
     {
-        path: "/colaboradores",
+        path: "/usuarios",
         layout: LayoutApp,
-        component: IndexColaboradores
+        component: IndexUsuarios
     },
     {
         path: "/areas",
@@ -88,7 +98,37 @@ const routesAdmin = [
     {
         path: "/areas/registrar",
         layout: LayoutApp,
-        component: RegistrarArea
+        component: CreateAreas
+    },
+    {
+        path: "/departamentos",
+        layout: LayoutApp,
+        component: Departamentos
+    },
+    {
+        path: "/departamentos/:id",
+        layout: LayoutApp,
+        component: EditDepartamentos
+    },
+    {
+        path: "/departamentos/registrar",
+        layout: LayoutApp,
+        component: CreateDepartamentos
+    },
+    {
+        path: "/puestos",
+        layout: LayoutApp,
+        component: Puestos
+    },
+    {
+        path: "/puestos/:id",
+        layout: LayoutApp,
+        component: EditPuestos
+    },
+    {
+        path: "/puestos/registrar",
+        layout: LayoutApp,
+        component: CreatePuestos
     },
 
     // Devarana

@@ -52,8 +52,6 @@ const EditArea = () => {
             })
             return null
         }
-
-        console.log(areaEdit);
         dispatch( updateAreaAction(id, areaEdit) ) 
     
         notification['success']({

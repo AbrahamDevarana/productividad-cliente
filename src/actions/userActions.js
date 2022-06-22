@@ -123,16 +123,10 @@ export function createUserAction(data){
         .then( res => {
             console.log(res);
             dispatch(createUserSuccess(res.data.user))
-            notification['success']({
-                message: res.data.msg,
-            });
         })
         .catch( err => {
-            console.log(err.response);
+            console.log(err.response.data);
             dispatch(createUserError(err.response.data))
-            notification['error']({
-                message: err.response.data,
-            });
         })
     }
 }

@@ -55,7 +55,7 @@ const Perfil = () => {
                         <Avatar picture={userActive.picture} userName={"Colaborador"} className="m-auto"/>
                     </div>
                     <div className="my-auto px-5 md:w-fit w-full text-center md:text-left">
-                        <p className="font-bold text-custom-dark2">{`${selectedUser.name} ${selectedUser.lastName} ${selectedUser.secondLastName}`} </p>
+                        <p className="font-bold text-custom-dark2">{`${selectedUser.name} ${selectedUser.lastName || ''} ${selectedUser.secondLastName || ''}`} </p>
                         <p className="text-sm font-light text-custom-dark2">Desarrollador Web | Innovación y Calidad</p>
                     </div>
                     <div className="bg-devarana-background my-auto flex max-w-[400px] w-full ml-auto rounded relative z-0">

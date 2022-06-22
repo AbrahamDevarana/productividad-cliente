@@ -6,7 +6,10 @@ import estatusReducer from './estatusReducer';
 import tipoReducer from './tipoReducer';
 import perspectivaReducer from './perspectivaReducer';
 import areaReducer from './areaReducer';
-
+import departamentoReducer from './departamentoReducer';
+import locationReducer from './locationReducer';
+import somosDevaranaReducer from './somosDevaranaReducer';
+import puestoReducer from './puestoReducer';
 
 
 export default combineReducers({
@@ -18,4 +21,8 @@ export default combineReducers({
     tipoAccion: tipoReducer,
     perspectivas: perspectivaReducer,
     area: areaReducer,
+    departamento: departamentoReducer,
+    location: locationReducer,
+    devarana: somosDevaranaReducer,
+    puesto: puestoReducer,
 });

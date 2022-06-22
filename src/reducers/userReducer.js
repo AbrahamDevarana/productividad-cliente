@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
             }
         case types.GET_USER_ERROR:
             if(action.payload.status === 401){
-                localStorage.removeItem('auth-token')
+                localStorage.removeItem('accessToken')
                 window.location.href = '/login'
             }
             return {

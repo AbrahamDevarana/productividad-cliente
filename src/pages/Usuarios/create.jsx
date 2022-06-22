@@ -1,7 +1,6 @@
 import Box from "../../components/Elements/Box";
-import { Steps } from 'antd';
-import { useState } from "react";
-import { notification, DatePicker, Select } from 'antd';
+import { useEffect, useState } from "react";
+import { notification, DatePicker, Select, Steps, Checkbox } from 'antd';
 import moment from "moment";
 
 import '../../assets/css/CustomSteps.css'
@@ -11,17 +10,28 @@ import Button from "../../components/Elements/Button"
 import { createUserAction } from "../../actions/userActions";
 import { useDispatch, useSelector } from "react-redux";
 import AntdNotificacion from "../../components/Antd/AntdNotification";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { getEstados, getMunicipios } from "../../actions/locationActions";
+import { getDepartamentoAreaAction } from "../../actions/departamentoActions";
+import { getAllAreasAction } from "../../actions/areaActions";
+import { getAllPuestosAction } from "../../actions/puestoActions";
 
 
-const RegistrarColaborador = () => {
+const RegistrarUsuarios = () => {
 
 
+
+    const estados = useSelector( state => state.location.estados)
+    const municipios = useSelector( state => state.location.municipios)
     const registerError = useSelector( state => state.users.error)
+
+    const areas = useSelector( state => state.area.areas )
+    const departamentos = useSelector( state => state.departamento.departamentos)
+    const puestos = useSelector( state => state.puesto. puestos )
 
     const { Step } = Steps; 
     const { Option } = Select;
-    
+
     const dispatch= useDispatch()
     const navigate = useNavigate()
     const [current, setCurrent] = useState(0);
@@ -36,17 +46,27 @@ const RegistrarColaborador = () => {
 
         street: '',
         suburb: '',
-        town_id: 0,
         birth_place: '',
 
         bachelor_degree:'',
-        rol_id: '',
-        position_id: '',
-        department_id: '',
-        admission_date:''
+        rol_id: 0,
+        position_id: 0,
+        department_id: 0,
+        admission_date:'',
+
+        isLeader: false,
     })
 
-    const {name, lastName, secondLastName, email, phone, birth_date, street, suburb, state, birth_place, town_id, bachelor_degree, rol_id, position_id, department_id, admission_date} = user
+    
+    useEffect(() => {
+        dispatch(getEstados())
+        dispatch(getAllAreasAction())
+        dispatch(getAllPuestosAction())
+        
+    }, [])
+    
+
+    const {name, lastName, secondLastName, email, phone, birth_date, street, suburb, isLeader, birth_place, town_id, bachelor_degree, rol_id, position_id, department_id, admission_date} = user
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -94,7 +114,15 @@ const RegistrarColaborador = () => {
         }
     }
 
+    const handleFilter = async (id) => {
+        dispatch(getDepartamentoAreaAction(id))
+    }
 
+    const handleChangeEstado = (id) => {
+        dispatch(getMunicipios(id))
+    }
+
+    
     return ( 
     <>
         <div className="my-20 max-w-screen-lg mx-auto">
@@ -125,7 +153,7 @@ const RegistrarColaborador = () => {
                             <div className="mb-8"><Input title="Apellido Materno" className="" inputName="secondLastName" fn={handleChange} value={secondLastName}/> </div>
                         </div>
                         <div className="col-span-1">
-                            <DatePicker format={"DD - MM - YYYY"}  placeholder="Fecha de nacimiento" inputName="birth_date" value={birth_date || moment('1990/01/01', 'YYYY/MM/DD')} onChange={(date) => (setUser({...user, birth_date:date}))} className="w-full border-0 border-b" />
+                            <DatePicker format={"DD-MM-YYYY"}  placeholder="Fecha de nacimiento" inputName="birth_date" defaultPickerValue={moment("01-01-1990", "DD-MM-YYYY")} onChange={(date, dateString) => (setUser({...user, birth_date: dateString }))} className="w-full border-0 border-b" />
                         </div>
                         <div className="col-span-1">
                             <Input title="Email" type="mail" inputName="email" fn={handleChange} value={email}/> 
@@ -136,7 +164,7 @@ const RegistrarColaborador = () => {
                         <div className="col-span-2">
                             <div className="flex justify-between">
                             
-                            <Button btnType="primary-outline" fn={() => navigate("/colaboradores")}>
+                            <Button btnType="primary-outline" fn={() => navigate("/usuarios")}>
                                 Volver
                             </Button>
                             <Button btnType="secondary" fn={ () => handleSteps(current) }>Siguiente</Button>
@@ -150,18 +178,59 @@ const RegistrarColaborador = () => {
                     <h1 className="text-2xl pb-8">Domicilio</h1>
                     <div className="grid grid-cols-2 gap-10">
 
+                        <div className="col-span-1">
+                            <Select
+                                showSearch
+                                placeholder= "Seleccionar Estado"
+                                optionFilterProp="children"
+                                filterOption={(input, option) => option.children.includes(input)}
+                                filterSort={(optionA, optionB) =>
+                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                }
+                                onChange={(value) => handleChangeEstado(value)}
+                                className="w-full"
+                            >
+                                {
+                                    estados && estados.length > 0 ?
+                                        estados.map( ( item, index) => (
+                                            <Option key={index} value={item.id}>{item.nombre}</Option>
+                                        ))
+                                        :
+                                        null
+                                }
+                                
+                            </Select>
+                        </div>
+                        <div className="col-span-1">
+                            <Select
+                                showSearch
+                                placeholder= "Seleccionar Municipio"
+                                optionFilterProp="children"
+                                filterOption={(input, option) => option.children.includes(input)}
+                                filterSort={(optionA, optionB) =>
+                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                }
+                                onChange={(value) => setUser({...user, town_id:value})}
+                                
+                                className="w-full"
+                            >
+                                {
+                                    municipios && municipios.length > 0 ?
+                                        municipios.map( ( item, index) => (
+                                            <Option key={index} value={item.id}>{item.nombre}</Option>
+                                        ))
+                                        :
+                                        null
+                                }
+                                
+                            </Select>
+                        </div>
                         <div className="col-span-2">
                             <Input title="Calle y Número" inputName="street" fn={handleChange} value={street}/> 
                         </div>
                         <div className="col-span-1">
                             <Input title="Colonia" inputName="suburb" fn={handleChange} value={suburb} />
-                        </div>
-                        <div className="col-span-1">
-                            <Input title="Municipio" inputName="town_id" fn={handleChange} value={town_id || 1}/> 
-                        </div>
-                        <div className="col-span-1">
-                            <Input title="Estado" inputName="state" fn={handleChange} value={state || 'Querétaro'}/> 
-                        </div>
+                        </div>                       
                         <div className="col-span-1">
                             <Input title="Lugar de Origen" inputName="birth_place" fn={handleChange} value={birth_place}/> 
                         </div>
@@ -177,50 +246,70 @@ const RegistrarColaborador = () => {
                 </div>
                 <div className={`pt-20 ${current === 2? 'block' : 'hidden'}`}>
                 <h1 className="text-2xl pb-8">Profesional</h1>
-                    
                     <div className="grid grid-cols-2 gap-10">
 
-                        <div className="col-span-1">
+                        
+                    <div className="col-span-1">
                             <Select
                                 showSearch
-                                style={{ width: '100%' }}
-                                placeholder="Lider de equipo"
+                                className="w-full"
+                                placeholder="Área"
                                 optionFilterProp="children"
                                 filterOption={(input, option) => option.children.includes(input)}
                                 filterSort={(optionA, optionB) =>
                                     optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
                                 }
+                                onChange={(value) => handleFilter(value)}
                             >
-                                {/* TODO: obtener todas las posiciones */}
-                                <Option value="" disabled>-- Selecciona lider -- </Option>
-                                <Option value="1">Fátima Ortiz</Option>
-                                
-                            </Select>
-                        </div>
-
-                        <div className="col-span-1">
-                            <Select
-                                showSearch
-                                style={{ width: '100%' }}
-                                placeholder="Equipo"
-                                optionFilterProp="children"
-                                filterOption={(input, option) => option.children.includes(input)}
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                <Option value="0"> No Asignado </Option>
+                                {
+                                    areas && areas.length > 0 ?
+                                        areas.map( ( item, i) => (
+                                            <Option key={item.id} value={item.id}>{item.nombre}</Option>
+                                        ))
+                                        :
+                                        null
                                 }
-                            >
-                                {/* TODO: obtener todas las posiciones */}
-                                <Option value="" disabled>-- Selecciona equipo -- </Option>
-                                <Option value="1">Equipo de Innovación y Calidad</Option>
-                                
                             </Select>
                         </div>
 
                         <div className="col-span-1">
+                            {
+                                departamentos && departamentos.length > 0?
+                                
+                                <Select
+                                    showSearch
+                                    className="w-full"
+                                    placeholder="Departamento"
+                                    optionFilterProp="children"
+                                    filterOption={(input, option) => option.children.includes(input)}
+                                    filterSort={(optionA, optionB) =>
+                                        optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
+                                    }
+                                    onChange={(value) => setUser({...user, department_id:value})}
+                                >
+                                    <Option value="0"> No Asignado </Option>
+                                    {
+                                        departamentos && departamentos.length > 0 ?
+                                            departamentos.map( ( item, index) => (
+                                                <Option key={index} value={item.id}>{item.nombre}</Option>
+                                            ))
+                                            :
+                                            null
+                                    }
+                                    
+                                </Select>
+                                :  
+                                <>
+                                    <p className="text-custom-gray font-light">No se encontraron departamentos, seleccione otra área</p>
+                                </>
+                            }
+                        </div>
+
+                        <div className="col-span-1">
                             <Select
-                                defaultValue={rol_id}
                                 showSearch
-                                style={{ width: '100%' }}
+                                className="w-full"
                                 placeholder="Rol"
                                 optionFilterProp="children"
                                 filterOption={(input, option) => option.children.includes(input)}
@@ -230,41 +319,24 @@ const RegistrarColaborador = () => {
                                 onChange={(value) => setUser({...user, rol_id:value})}
                             >
                                 {/* TODO: obtener todas las posiciones */}
-                                <Option value="" disabled>-- Selecciona rol -- </Option>
+                                <Option value="0"> No Asignado </Option>
                                 <Option value="1">Presidente</Option>
                                 <Option value="2">Dirección</Option>
                                 <Option value="3">Gerente</Option>
-                                <Option value="4">Colaborador</Option>
+                                <Option value="4">Usuarios</Option>
                                 
                             </Select>
                         </div>
 
                         <div className="col-span-1">
-                            <Select
-                                defaultValue={department_id}
-                                showSearch
-                                style={{ width: '100%' }}
-                                placeholder="Departamento"
-                                optionFilterProp="children"
-                                filterOption={(input, option) => option.children.includes(input)}
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                }
-                                onChange={(value) => setUser({...user, department_id:value})}
-                            >
-                                {/* TODO: obtener todas las posiciones */}
-                                <Option value="" disabled>-- Selecciona departamento -- </Option>
-                                <Option value="1"> Innovación y Calidad </Option>
-                                
-                            </Select>
+                            <Checkbox onChange={ () => setUser({...user, isLeader: !isLeader})} className="text-custom-dark2 font-light w-full">Es Lider?</Checkbox>
                         </div>
 
                         <div className="col-span-1">
-                            <Select
-                                defaultValue={position_id}
+                        <Select
                                 showSearch
-                                style={{ width: '100%' }}
-                                placeholder="Posición"
+                                className="w-full"
+                                placeholder="Puestos"
                                 optionFilterProp="children"
                                 filterOption={(input, option) => option.children.includes(input)}
                                 filterSort={(optionA, optionB) =>
@@ -272,18 +344,23 @@ const RegistrarColaborador = () => {
                                 }
                                 onChange={(value) => setUser({...user, position_id:value})}
                             >
-                                {/* TODO: obtener todas las posiciones */}
-                                <Option value="" disabled>-- Selecciona posición -- </Option>
-                                <Option value="1">Algo</Option>
-                                
+                                <Option value="0"> No Asignado </Option>
+                                {
+                                    puestos && puestos.length > 0 ?
+                                        puestos.map( ( item, i) => (
+                                            <Option key={item.id} value={item.id}>{item.nombre}</Option>
+                                        ))
+                                        :
+                                        null
+                                }
                             </Select>
                         </div>
                         <div className="col-span-1">
                             <Input title="Título" inputName="bachelor_degree" fn={handleChange} value={bachelor_degree}/> 
                         </div>
                         
-                        <div className="col-span-1">
-                            <DatePicker format={"DD - MM - YYYY"} placeholder="Fecha de ingreso" inputName="admission_date" value={admission_date || moment()} onChange={(date) => (setUser({...user, admission_date:date}))} className="w-full border-0 border-b" />
+                        <div className="col-span-1"> 
+                            <DatePicker format={"DD-MM-YYYY"} placeholder="Fecha de ingreso" inputName="admission_date" defaultPickerValue={admission_date} onChange={(date, dateString) => (setUser({...user, admission_date:dateString}))} className="w-full border-0 border-b" />
                         </div>
                         <div className="col-span-2">
                             <div className="flex justify-between">
@@ -303,4 +380,4 @@ const RegistrarColaborador = () => {
      );
 }
  
-export default RegistrarColaborador;
+export default RegistrarUsuarios;

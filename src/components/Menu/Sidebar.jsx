@@ -7,7 +7,7 @@ import "../../assets/scss/menu.scss"
 
 // Iconos
 import {IoIosRocket} from 'react-icons/io'
-import { FaProjectDiagram, FaTasks, FaEarlybirds } from 'react-icons/fa'
+import { FaProjectDiagram, FaTasks, FaEarlybirds, FaUserFriends } from 'react-icons/fa'
 import { BiTargetLock } from 'react-icons/bi'
 import { BsGearFill } from 'react-icons/bs'
 import { TbLetterP, TbLetterT, TbLetterE } from "react-icons/tb";
@@ -21,7 +21,6 @@ const Sidebar = (props) => {
     
     const navigate = useNavigate()
     const userAuth = useSelector( state => state.login.user )
-    console.log(userAuth? userAuth.picture : '');
 
 
     function getItem(label, key, icon, children, type) {
@@ -47,7 +46,7 @@ const Sidebar = (props) => {
     };
 
     const items = [
-        getItem('Actividades', 'sub1', <FaTasks className={`${ active ? "justify-center" : ""}`}/>, [
+        getItem('Actividades', 'sub1', <FaTasks className={`${ active ? "justify-center text-2xl" : ""}`}/>, [
           getItem('Planeación', '/planeacion', <TbLetterP className="text-white"/>),
           getItem('Tareas', '/tareas', <TbLetterT className="text-white"/>),
           getItem('Eureka', '/eureka', <TbLetterE className="text-white"/>),
@@ -57,7 +56,7 @@ const Sidebar = (props) => {
           getItem('Proyecto', '/proyecto-2'),
         ]),
         getItem('','sub3', null, null, 'divider'),
-        getItem('Somos DEVARANA', '/somos-devarana', <FaEarlybirds className={`${ active ? "justify-center" : ""}`}/>),
+        getItem('Somos DEVARANA', '/somos-devarana', <FaEarlybirds className={` text-2xl-forced ${ active ? "justify-center text-2xl " : ""}`}/>),
         getItem('Estrategía', 'sub5', <IoIosRocket className={`${ active ? "justify-center" : ""}`}/>, [
             // getItem('Option 5', '/'),
             // getItem('Option 6', '/'),
@@ -68,8 +67,8 @@ const Sidebar = (props) => {
         ]),
         getItem('','sub7', null, null, 'divider'),
         getItem('Configuración', 'sub8', <BsGearFill className={`${ active ? "justify-center" : ""}`}/>, [
-            getItem('Colaboradores', '/colaboradores'),
-            // getItem('Option 6', '/colaboradores'),
+            getItem('Usuarios', '/usuarios', <FaUserFriends/>),
+            // getItem('Option 6', '/usuarios'),
         ]),
       ]; 
 
