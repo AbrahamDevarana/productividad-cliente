@@ -108,7 +108,15 @@ const RegistrarUsuarios = () => {
                     });
                     return null
                 }
+                console.log(user);
                 dispatch(createUserAction(user))
+
+                notification['success']({
+                    message: 'Usuario Creado',
+                    description: 'Usuario creado correctamente',
+                });
+
+                navigate('/usuarios')
             break
                 
         }
@@ -183,10 +191,8 @@ const RegistrarUsuarios = () => {
                                 showSearch
                                 placeholder= "Seleccionar Estado"
                                 optionFilterProp="children"
-                                filterOption={(input, option) => option.children.includes(input)}
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                }
+                                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                                filterSort={false}
                                 onChange={(value) => handleChangeEstado(value)}
                                 className="w-full"
                             >
@@ -206,10 +212,8 @@ const RegistrarUsuarios = () => {
                                 showSearch
                                 placeholder= "Seleccionar Municipio"
                                 optionFilterProp="children"
-                                filterOption={(input, option) => option.children.includes(input)}
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                }
+                                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                                filterSort={false}
                                 onChange={(value) => setUser({...user, town_id:value})}
                                 
                                 className="w-full"
@@ -255,13 +259,10 @@ const RegistrarUsuarios = () => {
                                 className="w-full"
                                 placeholder="Área"
                                 optionFilterProp="children"
-                                filterOption={(input, option) => option.children.includes(input)}
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                }
+                                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                                filterSort={false}
                                 onChange={(value) => handleFilter(value)}
                             >
-                                <Option value="0"> No Asignado </Option>
                                 {
                                     areas && areas.length > 0 ?
                                         areas.map( ( item, i) => (
@@ -282,13 +283,10 @@ const RegistrarUsuarios = () => {
                                     className="w-full"
                                     placeholder="Departamento"
                                     optionFilterProp="children"
-                                    filterOption={(input, option) => option.children.includes(input)}
-                                    filterSort={(optionA, optionB) =>
-                                        optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                    }
+                                    filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                                    filterSort={false}
                                     onChange={(value) => setUser({...user, department_id:value})}
                                 >
-                                    <Option value="0"> No Asignado </Option>
                                     {
                                         departamentos && departamentos.length > 0 ?
                                             departamentos.map( ( item, index) => (
@@ -312,18 +310,15 @@ const RegistrarUsuarios = () => {
                                 className="w-full"
                                 placeholder="Rol"
                                 optionFilterProp="children"
-                                filterOption={(input, option) => option.children.includes(input)}
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                }
+                                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                                filterSort={false}
                                 onChange={(value) => setUser({...user, rol_id:value})}
                             >
                                 {/* TODO: obtener todas las posiciones */}
-                                <Option value="0"> No Asignado </Option>
-                                <Option value="1">Presidente</Option>
-                                <Option value="2">Dirección</Option>
-                                <Option value="3">Gerente</Option>
-                                <Option value="4">Usuarios</Option>
+                                <Option value={1}>Presidente</Option>
+                                <Option value={2}>Dirección</Option>
+                                <Option value={3}>Gerente</Option>
+                                <Option value={4}>Usuarios</Option>
                                 
                             </Select>
                         </div>
@@ -338,13 +333,10 @@ const RegistrarUsuarios = () => {
                                 className="w-full"
                                 placeholder="Puestos"
                                 optionFilterProp="children"
-                                filterOption={(input, option) => option.children.includes(input)}
-                                filterSort={(optionA, optionB) =>
-                                    optionA.children.toLowerCase().localeCompare(optionB.children.toLowerCase())
-                                }
+                                filterOption={(input, option) => option.children.toLowerCase().includes(input.toLowerCase())}
+                                filterSort={false}
                                 onChange={(value) => setUser({...user, position_id:value})}
                             >
-                                <Option value="0"> No Asignado </Option>
                                 {
                                     puestos && puestos.length > 0 ?
                                         puestos.map( ( item, i) => (

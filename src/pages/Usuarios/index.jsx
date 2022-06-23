@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Input, Space, Table, Modal, notification } from "antd";
+import { ExclamationCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllUsersAction } from "../../actions/userActions";
@@ -11,11 +13,174 @@ const IndexUsuarios = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const { confirm } = Modal;
     const users = useSelector( state => state.users.users )
+    const loading = useSelector( state => state.users.loading )
 
     useEffect(() => {
         dispatch(getAllUsersAction())
     }, [])
+
+    useEffect(() => {
+        setDataSource(
+            users.map( (item, index) => (
+                {   key: index,
+                    puesto:item.nombre,
+                    foto: {picture: item.picture, short_name: item.short_name},
+                    nombre: `${item.name} ${item.lastName} ${item.secondLastName}`,
+                    puesto: item.position.nombre,
+                    email: item.email,
+                    acciones:item.id
+                }
+            ))
+        )    
+    }, [users])
+
+
+        console.log(users);
+
+    //Table
+    const [dataSource, setDataSource] = useState()
+    const [searchText, setSearchText] = useState('');
+    const [searchedColumn, setSearchedColumn] = useState('');
+    const searchInput = useRef(null);
+
+    const handleSearch = (selectedKeys, confirm, dataIndex) => {    
+        confirm();
+        setSearchText(selectedKeys[0]);
+        setSearchedColumn(dataIndex);
+    };
+
+    const handleReset = (clearFilters, confirm) => {
+        clearFilters();
+        setSearchText('');
+        confirm();
+    };
+
+    const getColumnSearchProps = (dataIndex) => ({
+        filterDropdown: ({
+          setSelectedKeys,
+          selectedKeys,
+          confirm,
+          clearFilters
+        }) => (
+          <div
+            style={{
+              padding: 8
+            }}
+          >
+            <Input
+              ref={searchInput}
+              placeholder={`Search ${dataIndex}`}
+              value={selectedKeys[0]}
+              onChange={(e) =>
+                setSelectedKeys(e.target.value ? [e.target.value] : [])
+              }
+              onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+              style={{
+                marginBottom: 8,
+                display: "block"
+              }}
+            />
+            <Space className="justify-between flex">
+              <Button
+                btnType="secondary"
+                fn={() => handleSearch(selectedKeys, confirm, dataIndex)}
+              
+              >
+                Buscar
+              </Button>
+              <Button
+                fn={() => clearFilters && handleReset(clearFilters, confirm)}
+              >
+                Limpiar
+              </Button>
+            </Space>
+          </div>
+        ),
+        filterIcon: (filtered) => (
+          <SearchOutlined
+            style={{
+              color: filtered ? "#1890ff" : undefined
+            }}
+          />
+        ),
+        onFilter: (value, record) =>
+          record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
+        onFilterDropdownVisibleChange: (visible) => {
+          if (visible) {
+            setTimeout(() => searchInput.current?.select(), 100);
+          }
+        },
+    });
+
+    const showDeleteConfirm = (id) => {
+		confirm({
+		  title: 'Estás seguro que deseas borrar este usuario?',
+		  icon: <ExclamationCircleOutlined />,
+		  content: 'Se borrará usuario y no se podrá recuperar',
+		  okText: 'Si',
+		  okType: 'danger',
+		  cancelText: 'No',
+	  
+		  onOk() {
+			// dispatch(deletePuestoAction(id))
+			notification["success"]({
+				message: "Eliminado",
+				description: "Se ha eliminado el usuario correctamente"
+			})
+		  },
+	  
+		  onCancel() {
+			console.log('Cancelado');
+		  },
+		});
+	  };
+
+    const columns = [
+        {
+          title: 'Foto',
+          dataIndex: 'foto',
+          key: 'foto',
+          sorter: (a, b) => a.foto.localeCompare(b.foto),
+          sortDirections: ['descend', 'ascend'],
+          ...getColumnSearchProps("foto"),
+          render: (data) => <Avatar picture={data.picture} className="p-2 w-[40px] m-auto"> {data.short_name} </Avatar>
+          
+        },
+        {
+            title: 'Nombre',
+            dataIndex: 'nombre',
+            key: 'nombre',
+            sorter: (a, b) => a.nombre.localeCompare(b.nombre),
+            sortDirections: ['descend', 'ascend'],
+            ...getColumnSearchProps("nombre")
+          },
+          {
+            title: 'Puesto',
+            dataIndex: 'puesto',
+            key: 'puesto',
+            sorter: (a, b) => a.puesto.localeCompare(b.puesto),
+            sortDirections: ['descend', 'ascend'],
+            ...getColumnSearchProps("puesto")
+          },
+          {
+            title: 'Email',
+            dataIndex: 'email',
+            key: 'email',
+            sorter: (a, b) => a.email.localeCompare(b.email),
+            sortDirections: ['descend', 'ascend'],
+            ...getColumnSearchProps("email")
+          },
+
+        {
+          title: 'Acciones',
+          dataIndex: 'acciones',
+          key: 'acciones',
+          render: (id) => <div><Button btnType="edit" fn={ () => navigate(`${id}`) } /> <Button btnType="delete" fn={ () => showDeleteConfirm(id) }>Borrar </Button> </div>,
+          width: 200,
+        },
+    ];
 
 
     return ( 
@@ -57,33 +222,15 @@ const IndexUsuarios = () => {
                             </Button>
                             
                         </div>
-                        <table className="bg-white w-full table-auto">
-                            <thead>
-                                <tr>
-                                    <th className="bg-gray-100 text-left px-6 py-4 w-10">Foto</th>
-                                    <th className="bg-gray-100 text-left px-6 py-4">Nombre</th>
-                                    <th className="bg-gray-100 text-left px-6 py-4">Puesto</th>
-                                    <th className="bg-gray-100 text-left px-6 py-4">Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            {
-                                users && users.length > 0 ?
-                                    users.map ( (item, i) => (
-                                    <tr key={i}>
-                                        <td className="px-6 py-4"><Avatar className="w-10 h-10">{item.short_name}</Avatar></td>
-                                        <td className="px-6 py-4">{`${item.name||''} ${item.lastName||''} ${item.secondLastNames||''}`}</td>
-                                        <td className="px-6 py-4">Dante Sparks</td>
-                                        <td className="px-6 py-4">{item.email||''}</td>
-                                    </tr>
-                                    ))
-                                :
-                                null
-                                
-                            }
-                            
-                            </tbody>
-                        </table>
+                        {
+                            users.length > 0 && dataSource && dataSource.length > 0 ?
+                                <Table 
+                                    columns={columns}
+                                    dataSource={dataSource} 
+                                    loading={loading}
+                                />
+                            : ""
+                        }
                     </Box>
                 </div>
             </div>

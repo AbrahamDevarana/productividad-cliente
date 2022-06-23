@@ -68,7 +68,7 @@ const Login = () => {
             </Box>
             <div className="px-5 pb-10">
                 {loginError ? <AntdNotificacion errors={loginError} errorType={1} /> : null}
-                <img src={Logo} alt="Devarana Logo" className='py-4 ax-w-full block mx-auto object-cover' />                 
+                <img src={Logo} alt="Devarana Logo" className='py-16 max-w-full block mx-auto object-cover' />                 
                 {/* <form onSubmit={handleSubmit}>
                     <div className='pb-5'>
                         <h2 className='text-center font-bold text-4xl text-custom-dark2'>Bienvenido</h2>
@@ -82,7 +82,7 @@ const Login = () => {
                     </div>
                 </form> */}
                     
-                    <Button type="button" btnType="secondary" className="block w-full my-2" fn={redirectToGoogleSSO}> Empezar Google </Button>    
+                    <Button type="button" btnType="secondary" className="block w-full my-2" fn={redirectToGoogleSSO}> Empezar </Button>    
             </div>
 
         </Box>

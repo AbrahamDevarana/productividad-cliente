@@ -142,11 +142,11 @@ const Profile = ({selectedUser}) => {
                     <div className="py-3 grid grid-cols-2 gap-x-5">
                         <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
                         </div>
                     </div>
                 </div>
@@ -167,11 +167,11 @@ const Profile = ({selectedUser}) => {
                     <div className="py-3 grid grid-cols-2 gap-x-5">
                         <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
                         </div>
                     </div>
                 </div>
@@ -192,11 +192,11 @@ const Profile = ({selectedUser}) => {
                     <div className="py-3 grid grid-cols-2 gap-x-5">
                         <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
                         </div>
                     </div>
                 </div>
@@ -219,11 +219,11 @@ const Profile = ({selectedUser}) => {
                     <div className="py-3 grid grid-cols-2 gap-x-5">
                         <Button btnType="primary-outline"> Ver Proyecto </Button>
                         <div className="flex justify-center my-auto">
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
-                            <Avatar className="w-7 h-7"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
+                            <Avatar className="w-7 h-7 -mx-1"/>
                         </div>
                     </div>
                 </div>

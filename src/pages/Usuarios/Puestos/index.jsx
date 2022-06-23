@@ -4,9 +4,8 @@ import { deletePuestoAction, getAllPuestosAction } from "../../../actions/puesto
 import Box from "../../../components/Elements/Box";
 import Button from "../../../components/Elements/Button";
 import { Input, Space, Table, Modal, notification } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined, SearchOutlined } from '@ant-design/icons';
 const Puestos = () => {
 
     const { confirm } = Modal;
