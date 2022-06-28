@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { useNavigate } from "react-router-dom"
-import { logoutAction, validateLoginAction } from '../actions/authActions'
+import {  validateLoginAction } from '../actions/authActions'
 import tokenAuth from '../config/tokenAuth'
 
 import Sidebar from '../components/Menu/Sidebar'
 import Navbar from '../components/Menu/Navbar'
-import { Layout, Menu } from 'antd';
+import { Menu } from 'antd';
 import { Dropdown, Modal, Drawer } from 'antd'
 
 import { AiOutlinePlus } from 'react-icons/ai'
@@ -44,7 +44,7 @@ const LayoutApp = ({children}) => {
     const [active, isActive] = useState(false)
     const [settingVisible, setSettingVisible] = useState(false);
 
-    const {state, opt, component, titulo} = visible
+    const {state,  component, titulo} = visible
 
     
     const showModal = (opt) => {

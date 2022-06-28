@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { getAccessToken } from "../api/auth"
+import { getAccessToken, refreshAccessToken, getRefreshToken } from "../api/auth"
 import jwtDecode from 'jwt-decode';
+import { logoutAction } from "../actions/authActions";
 
 
 export default function AuthProvider(){
@@ -23,18 +24,24 @@ export default function AuthProvider(){
 
 function checkUserLogin( setAuth ) {
     const accessToken = getAccessToken()
-    if(accessToken){
+    if(!accessToken){
+        const refreshToken = getRefreshToken()
+        if(!refreshToken){
+            logoutAction()
+            setAuth({
+                user: null,
+                token: null,
+                isAuthenticated: false,
+                isLoading: false,
+            })
+        }else{
+            refreshAccessToken(refreshToken)
+        }
+    }else{
         setAuth({
             user: jwtDecode(accessToken),
             token: accessToken,
             isAuthenticated: true,
-            isLoading: false,
-        })
-    }else{
-        setAuth({
-            user: null,
-            token: null,
-            isAuthenticated: false,
             isLoading: false,
         })
     }
