@@ -45,7 +45,7 @@ const loginRequest = () => ({
 
 
 export function validateLoginAction(auth){
-    return async (dispatch) => {
+    return (dispatch) => {
         if(auth){
             dispatch({
                 type: types.LOGIN_VALIDATION_SUCCESS,

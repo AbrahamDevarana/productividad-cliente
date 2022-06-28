@@ -1,7 +1,7 @@
-import Box from "../Elements/Box";
-import Badge from "../Elements/Badge";
-import Input from "../Elements/Input";
-import Textarea from "../Elements/Textarea";
+import Box from "../../components/Elements/Box";
+import Badge from "../../components/Elements/Badge";
+import Input from "../../components/Elements/Input";
+import Textarea from "../../components/Elements/Textarea";
 import { DatePicker, Divider, Switch, Popconfirm } from 'antd';
 
 import { AiOutlineLink} from 'react-icons/ai'
@@ -14,8 +14,8 @@ import moment from "moment";
 import { useDispatch, useSelector } from "react-redux";
 import { addResponsabilityAction, deleteResponsabilityAction, updateUserAction } from "../../actions/userActions";
 import AntdNotificacion from '../../components/Antd/AntdNotification';
-import Button from "../Elements/Button";
-import CustomLink from "../Elements/CustomLink";
+import Button from "../../components/Elements/Button";
+import CustomLink from "../../components/Elements/CustomLink";
 
 
 const Edit = ({selectedUser}) => {

@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import tokenAuth from '../config/tokenAuth'
 import {validateLoginAction } from '../actions/authActions'
 import AuthProvider from "../provider/AuthProvider";
 

@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
+import {Link} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
-import { getCorporativoAction, updateCorporativoAction } from "../actions/somosDevaranaActions";
-import { getAllUsersAction } from "../actions/userActions";
-import Box from "../components/Elements/Box";
-import Avatar from "../components/Perfil/Avatar";
-import Button from "../components/Elements/Button"
+import { getCorporativoAction, updateCorporativoAction } from "../../actions/somosDevaranaActions";
+import { getAllUsersAction } from "../../actions/userActions";
+import Box from "../../components/Elements/Box";
+import Avatar from "../../components/Elements/Avatar";
+import Button from "../../components/Elements/Button"
 import { Input, Modal } from 'antd';
 import {AiFillEdit} from 'react-icons/ai'
+import Valores from "./Valores";
+import Competencias from "./Competencias";
 
 const SomosDevarana = () => {
     const { TextArea } = Input;
@@ -17,13 +20,13 @@ const SomosDevarana = () => {
     const [modalConfig, setModalConfig] = useState({})
 
     const [devarana, setDevarana] = useState({})
+    const [isAdmin, setAdmin] = useState(true)
 
-    const {proposito, mision, vision, logotipo, isotipo, fortaleza, oportunidades, debilidades, amenazas, valores, competencias, responsabilidades} = somosDevarana
+    const {proposito, mision, vision, logotipo, isotipo, valores, competencias, responsabilidades, politica_responsabilidad} = somosDevarana
     
     useEffect(() => {
         dispatch(getAllUsersAction())
-        dispatch(getCorporativoAction())
-        // setDevarana(somosDevarana)          
+        dispatch(getCorporativoAction())     
     }, [])
     
     const handleChange = e => {        
@@ -62,7 +65,7 @@ const SomosDevarana = () => {
                 <div className="flex">
                     { users && users.length > 0 ?
                         users.map( (item, i) => (
-                            <Avatar key={i} className="w-10 h-10 mx-3">{item.short_name}</Avatar>
+                            <Link key={i} to={`/perfil/${item.slug}`}><Avatar className="w-10 h-10 mx-3">{item.short_name}</Avatar></Link>
                         ))
                         :
                         null
@@ -77,16 +80,14 @@ const SomosDevarana = () => {
         <Box className="col-span-6">
             <div className="flex">
                 <h2>LOGOTIPO</h2>
-                {/* <p className="px-2">¿Qué hacemos?</p> */}
-                <AiFillEdit onClick={() => showModal( { 'logotipo': logotipo }, 'Logotipo', '200')} className="text-xl text-custom-dark2 ml-auto"/>
+                {isAdmin ? <AiFillEdit onClick={() => showModal( { 'logotipo': logotipo }, 'Logotipo', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
             </div>
             <p>{logotipo}</p>
         </Box>
         <Box className="col-span-6">
             <div className="flex">
                 <h2>ISOTIPO</h2>
-                {/* <p className="px-2">¿Para qué?</p> */}
-                <AiFillEdit onClick={() => showModal({'isotipo': isotipo}, 'Isotipo', '200')} className="text-xl text-custom-dark2 ml-auto"/>
+                {isAdmin ? <AiFillEdit onClick={() => showModal({'isotipo': isotipo}, 'Isotipo', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
             </div>
                 <p>{isotipo}</p>
         </Box>
@@ -94,7 +95,7 @@ const SomosDevarana = () => {
                 <div className="flex">
                     <h2>PROPÓSITO</h2>
                     <p className="px-2">¿Qué hacemos?</p>
-                    <AiFillEdit onClick={() => showModal( { 'proposito': proposito }, 'Propósito', '200')} className="text-xl text-custom-dark2 ml-auto"/>
+                    {isAdmin ? <AiFillEdit onClick={() => showModal( { 'proposito': proposito }, 'Propósito', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
                 </div>
                 <p>{proposito}</p>
             </Box>
@@ -102,7 +103,7 @@ const SomosDevarana = () => {
                 <div className="flex">
                     <h2>MISIÓN</h2>
                     <p className="px-2">¿Para qué?</p>
-                    <AiFillEdit onClick={() => showModal({'mision': mision}, 'Misión', '200')} className="text-xl text-custom-dark2 ml-auto"/>
+                    {isAdmin ? <AiFillEdit onClick={() => showModal({'mision': mision}, 'Misión', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
                 </div>
                     <p>{mision}</p>
             </Box>
@@ -110,38 +111,24 @@ const SomosDevarana = () => {
                 <div className="flex">
                     <h2>FUTURO</h2>
                     <p className="px-2">¿Cómo queremos ser?</p>
-                    <AiFillEdit onClick={() => showModal({'vision': vision}, 'Futuro', '200')} className="text-xl text-custom-dark2 ml-auto"/>
+                    {isAdmin ? <AiFillEdit onClick={() => showModal({'vision': vision}, 'Futuro', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
                 </div>
                 <p>{vision}</p>
             </Box>
             <Box className="col-span-6">
                 <div>
-                    <h2>Valores</h2>
-                {
-                        valores && valores.length > 0 ?
-                        <>
-                            {valores.map( (item, i) => <p> {item.nombre} </p> )}
-                        </>
-                        :
-                        null    
-                }
+                    <Valores valores={valores} isAdmin={isAdmin}/>
                 </div>
             </Box>
             <Box className="col-span-6">
                 <div>
-                    <h2>Competencias</h2>
-                    {
-                            competencias && competencias.length > 0 ?
-                            <>
-                                {competencias.map( (item, i) => <p> {item.nombre} </p> )}
-                            </>
-                            :
-                            null    
-                    }
+                    <Competencias competencias={competencias} isAdmin={isAdmin}/>
                 </div>
             </Box>
             <Box className="col-span-12">
                 <h2>Política de responsabilidad</h2>
+                {isAdmin ? <AiFillEdit onClick={() => showModal( { 'politica_responsabilidad': politica_responsabilidad }, 'Politica de responsabilidad', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
+                <p>{politica_responsabilidad}</p>
             </Box>
             <Box className="col-span-3">
                 <div className="inline-flex">

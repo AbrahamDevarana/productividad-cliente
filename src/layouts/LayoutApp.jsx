@@ -14,34 +14,26 @@ import NuevaTareaForm from '../components/Forms/NuevaTareaForm'
 import AuthProvider from '../provider/AuthProvider'
 import Settings from '../components/Menu/Settings'
 
-
 const LayoutApp = ({children}) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const auth = AuthProvider()
-
-    useEffect(() => {
-        dispatch(validateLoginAction(auth))
-    }, [auth])
-
+    tokenAuth()
 
     const isAuthenticated = useSelector( state => state.login.isAuthenticated)
     const loading = useSelector( state => state.login.loading)
-    const tkn = localStorage.getItem('accessToken')
 
-    tokenAuth(tkn)
+    useEffect(() => {
+        // if(auth){
+            dispatch(validateLoginAction(auth))
+        // }
+    }, [auth])
 
     if(!isAuthenticated && !loading) {
         navigate("/login")
     }
- 
-    const logOut = () => {
-        dispatch(logoutAction())
-        navigate('/login')
-    }
-
     
     const [visible, setVisible] = useState({
         state: false,

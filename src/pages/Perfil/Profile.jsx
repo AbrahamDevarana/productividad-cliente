@@ -1,18 +1,18 @@
-import Badge from "../Elements/Badge";
-import Box from "../Elements/Box";
-import Button from '../Elements/Button'
-import {AiFillAlert, AiFillAliwangwang, AiFillBug, AiFillCustomerService} from 'react-icons/ai'
+import Badge from "../../components/Elements/Badge";
+import Box from "../../components/Elements/Box";
+import Button from '../../components/Elements/Button'
+
 import {AiFillLinkedin, AiFillInstagram, AiFillTwitterSquare, AiFillFacebook } from 'react-icons/ai'
 import { ImStatsBars2 } from 'react-icons/im'
 import { BiTargetLock } from 'react-icons/bi'
 import {   CgListTree } from 'react-icons/cg'
 import {   FaProjectDiagram } from 'react-icons/fa'
 import {   GiPodiumWinner } from 'react-icons/gi'
-import DoughnutChart from "../Charts/Doughnut";
-import Avatar from "./Avatar";
+import DoughnutChart from "../../components/Charts/Doughnut";
+import Avatar from "../../components/Elements/Avatar";
 import moment from "moment";
 
-const Profile = ({selectedUser}) => {
+const Profile = ({selectedUser, visit}) => {
     return ( 
     <>
         <div className="grid grid-cols-4 gap-10 pt-10">
@@ -96,7 +96,7 @@ const Profile = ({selectedUser}) => {
                 <div>
                     <p className="font-bold py-2 text-custom-dark2">
                         Fecha de Ingreso: 
-                        <span className="font-light"> {moment(selectedUser.admission_date).format("LL") } </span>
+                        <span className="font-light"> { selectedUser.admission_date ? moment(selectedUser.admission_date).format("LL") : 'No se ha asignado fecha' } </span>
                     </p>
                 </div>
                 <div>

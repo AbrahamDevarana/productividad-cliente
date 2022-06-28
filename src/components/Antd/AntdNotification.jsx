@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 const AntdNotificacion = ({errors, errorType}) => {
    
     useEffect(() => {
-        console.log(Object.keys(errors).length);
         let  descriptionText = ''
         let  message = ''
         let type = ''

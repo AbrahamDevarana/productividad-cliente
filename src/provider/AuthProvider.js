@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getAccessToken } from "../api/auth"
 import jwtDecode from 'jwt-decode';
 
+
 export default function AuthProvider(){
    
     const [auth, setAuth] = useState(
@@ -22,7 +23,6 @@ export default function AuthProvider(){
 
 function checkUserLogin( setAuth ) {
     const accessToken = getAccessToken()
-
     if(accessToken){
         setAuth({
             user: jwtDecode(accessToken),

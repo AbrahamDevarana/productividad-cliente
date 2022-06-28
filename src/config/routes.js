@@ -11,6 +11,7 @@ import SomosDevarana from '../pages/SomosDevarana'
 
 // Usuarios
 import RegistrarUsuarios from '../pages/Usuarios/create'
+import EditUsuarios from '../pages/Usuarios/edit'
 import IndexUsuarios from '../pages/Usuarios'
 import LoginSuccess from '../pages/auth/LoginSuccess'
 import LoginError from '../pages/auth/LoginError'
@@ -27,8 +28,10 @@ import EditDepartamentos from '../pages/Usuarios/Departamentos/edit'
 import Puestos from '../pages/Usuarios/Puestos'
 import EditPuestos from '../pages/Usuarios/Puestos/edit'
 import CreatePuestos from '../pages/Usuarios/Puestos/create'
+import PerfilVisit from '../pages/Perfil/visit'
 
-const routesAccess = [
+
+const routesPublic = [
     {
         path: "/login",
         layout: LayoutLogin,
@@ -51,7 +54,7 @@ const routesAccess = [
     }
 ]
 
-const routesAdmin = [
+const routesPrivate = [
     {
         path: "/",
         layout: LayoutApp,
@@ -70,7 +73,7 @@ const routesAdmin = [
     {
         path: "/perfil/:userSlug",
         layout: LayoutApp,
-        component: Perfil
+        component: PerfilVisit
     },
 
     // Usuarios
@@ -84,6 +87,11 @@ const routesAdmin = [
         path: "/usuarios",
         layout: LayoutApp,
         component: IndexUsuarios
+    },
+    {
+        path: "/usuarios/:slug",
+        layout: LayoutApp,
+        component: EditUsuarios
     },
     {
         path: "/areas",
@@ -143,7 +151,7 @@ const routesAdmin = [
 
 ]
 
-const routes = [...routesAdmin, ...routesAccess]
+const routes = [...routesPrivate, ...routesPublic]
 
 
 export default routes

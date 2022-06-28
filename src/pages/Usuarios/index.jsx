@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { getAllUsersAction } from "../../actions/userActions";
 import Box from "../../components/Elements/Box";
-import Avatar from "../../components/Perfil/Avatar";
+import Avatar from "../../components/Elements/Avatar";
 import Button from "../../components/Elements/Button"
 import Badge from "../../components/Elements/Badge";
 
@@ -25,19 +25,15 @@ const IndexUsuarios = () => {
         setDataSource(
             users.map( (item, index) => (
                 {   key: index,
-                    puesto:item.nombre,
                     foto: {picture: item.picture, short_name: item.short_name},
                     nombre: `${item.name} ${item.lastName} ${item.secondLastName}`,
                     puesto: item.position.nombre,
                     email: item.email,
-                    acciones:item.id
+                    acciones:item.slug
                 }
             ))
         )    
     }, [users])
-
-
-        console.log(users);
 
     //Table
     const [dataSource, setDataSource] = useState()
@@ -189,24 +185,27 @@ const IndexUsuarios = () => {
                 <div className="col-span-2 sm:col-span-1 grid grid-cols-2 gap-5">
                     <div className="col-span-2 sm:col-span-1">
                         <Box>
-
+                          <Link to="/areas"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="primary">Áreas</Badge></Link>
                         </Box>
                     </div>
                     <div className="col-span-2 sm:col-span-1">
-                        <Box>
-
-                        </Box>
+                        <Link to="/departamentos">
+							<Box>
+								<Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="secondary">Dptos</Badge>
+							</Box>
+						</Link>
+						<div></div>
                     </div>
                     <div className="col-span-2 sm:col-span-1">
                         <Box>
-
+                        <Link to="/puestos"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="pink">Puestos</Badge></Link>
                         </Box>
                     </div>
                     <div className="col-span-2 sm:col-span-1 ">
                         <Box className="flex justify-between flex-wrap gap-5">
-                            <Link to="/areas"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="primary">Áreas</Badge></Link>
-                            <Link to="/departamentos"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="secondary">Dptos</Badge></Link>
-                            <Link to="/puestos"><Badge fontSize="text-base" badgeSize="w-20 h-20" badgeType="pink">Puestos</Badge></Link>
+                            
+                            
+                            
                         </Box>
                     </div>
                 </div>

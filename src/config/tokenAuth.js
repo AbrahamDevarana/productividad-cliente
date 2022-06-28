@@ -1,9 +1,9 @@
 import clientAxios from './axios';
 
-const tokenAuth = token => {
-    // const token = localStorage.getItem('token');
+const tokenAuth = () => {
+    const token = localStorage.getItem('accessToken');
     if(token !== '') {
-        clientAxios.defaults.headers.common['accessToken'] = `${token}`
+        clientAxios.defaults.headers.common['accessToken'] = token
     }else{
         delete clientAxios.defaults.headers.common['accessToken']
     }

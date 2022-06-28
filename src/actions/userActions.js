@@ -58,6 +58,34 @@ const getUserError = payload => ({
     payload
 })
 
+
+export function getProfileAction(userActive){
+    return async (dispatch) => {
+        dispatch(getProfileRequest())
+        await clientAxios.get(`user/${userActive}`)
+        .then( res => {
+            dispatch(getProfileSuccess(res.data))
+        })
+        .catch( err => {
+            dispatch(getProfileError(err.response))
+        })
+    }
+}
+
+const getProfileRequest = () => ({
+    type: types.GET_PROFILE
+})
+
+const getProfileSuccess = payload => ({
+    type: types.GET_PROFILE_SUCCESS,
+    payload
+})
+
+const getProfileError = payload => ({
+    type: types.GET_PROFILE_ERROR,
+    payload
+})
+
 export function searchUserAction(slug){
     return async (dispatch) => {
         dispatch(searchUserRequest())

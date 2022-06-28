@@ -1,5 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Avatar from "../Perfil/Avatar";
+import Avatar from "../Elements/Avatar";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Menu } from 'antd';
