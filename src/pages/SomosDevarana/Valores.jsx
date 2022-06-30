@@ -4,8 +4,11 @@ import {AiFillEdit, AiFillCloseCircle} from 'react-icons/ai'
 // import Button from '../../components/Elements/Button';
 import {Input, Button} from 'antd';
 
-
 const Valores = ({valores, isAdmin}) => {
+    
+    const images = require.context('../../assets/img/valores', true)
+    
+    const arrImg = ['ADN-DEVARANA', 'AMOR-DEVARANA', 'APASIONADAS-DEVARANA', 'EXTRAORDINARIO-DEVARANA', 'INCLUYENTES-DEVARANA', 'INNOVACION-DEVARANA', 'TRIUNFADOR-DEVARANA']
 
     const [arrValores, setValores] = useState({})
 
@@ -29,7 +32,7 @@ const Valores = ({valores, isAdmin}) => {
         setValores(
             arrValores.map( item => item.id === valor_id ? {...item, nombre : e.target.value  } : {...item})
         )
-        console.log(arrValores);
+ 
     }
 
     const handleDelete = (e, valor_id) => {
@@ -43,14 +46,31 @@ const Valores = ({valores, isAdmin}) => {
     return ( 
         <>
         <div className='flex'>
-            <h2>Valores</h2>
+            <div>
+                <h1 className='text-lg font-medium'>Valores</h1>
+                <p className="pt-3">¿Cómo lo hacemos?</p>
+            </div>
             { isAdmin ? <AiFillEdit onClick={() => showModal()} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null}
         </div>
         {
             valores && valores.length > 0 ?
-            <>
-                {valores.map( (item, i) => <p key={i}> {item.nombre} </p> )}
-            </>
+            <div className='flex flex-col'>
+                {/* #each valores as valor */}
+                    {valores.map( (item, i) => 
+                        <div key={i} className='py-2 group'>
+                                <div className='flex group-even:text-left group-odd:text-right gap-10'>
+                                    <div className='group-even:order-1 group-odd:order-2 w-24'> 
+                                        <img src={images(`./${arrImg[i]}.svg`)} alt="" className='w-full'/>
+                                    </div>
+                                    <div className='group-even:order-2 group-odd:order-1 px-2 w-auto'>
+                                        <h2 className='text-devarana-pink font-bold'> {item.nombre} </h2>
+                                        <p className='font-light'>{ item.descripcion} </p>
+                                    </div>
+                                </div>
+                        </div>
+                    )}
+                {/* /each */}
+            </div>
             :
             null    
         }

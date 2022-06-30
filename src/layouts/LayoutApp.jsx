@@ -29,6 +29,7 @@ const LayoutApp = ({children}) => {
         // if(auth){
             dispatch(validateLoginAction(auth))
         // }
+        // eslint-disable-next-line
     }, [auth])
 
     if(!isAuthenticated && !loading) {

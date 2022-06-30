@@ -54,7 +54,14 @@ module.exports = {
         'ext' : 'rgb(0 0 0 / 10%) 0rem 0.25rem 0.375rem -0.0625rem, rgb(0 0 0 / 6%) 0rem 0.125rem 0.25rem -0.0625rem'
       },
       backgroundImage:{
-        'login': "url('./assets/img/background/Devarana-Website.jpg')"
+        'login': "url('./assets/img/background/Devarana-Website.jpg')",
+        // watermark 
+        'w-isotipo': "url('./assets/img/watermark/Devarana.svg')",
+        'w-logotipo': "url('./assets/img/watermark/Logotipo.svg')",
+        'w-proposito': "url('./assets/img/watermark/proposito.svg')",
+        'w-mision': "url('./assets/img/watermark/mision.svg')",
+        'w-vision': "url('./assets/img/watermark/Futuro.svg')",
+        'w-legendario': "url('./assets/img/watermark/ServicioLegendario.svg')",
       }
       
     },

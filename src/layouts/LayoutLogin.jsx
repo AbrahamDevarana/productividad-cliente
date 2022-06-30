@@ -17,6 +17,7 @@ const LayoutLogin = ({children}) => {
 
     useEffect(() => {
         dispatch(validateLoginAction(auth))
+        // eslint-disable-next-line
     }, [auth])
     
     if(isAuthenticated && !loading) {
