@@ -138,8 +138,6 @@ const IndexUsuarios = () => {
           title: 'Foto',
           dataIndex: 'foto',
           key: 'foto',
-          sorter: (a, b) => a.foto.localeCompare(b.foto),
-          sortDirections: ['descend', 'ascend'],
           ...getColumnSearchProps("foto"),
           render: (data) => <Avatar picture={data.picture} className="p-2 w-[40px] m-auto"> {data.short_name} </Avatar>
           
