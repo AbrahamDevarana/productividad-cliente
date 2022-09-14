@@ -57,7 +57,7 @@ const Valores = ({valores, isAdmin}) => {
             <div className='flex flex-col'>
                 {/* #each valores as valor */}
                     {valores.map( (item, i) => 
-                        <div key={i} className='py-2 group'>
+                        <div key={i} className='py-2 '>
                                 <div className='flex group-even:text-left group-odd:text-right gap-10'>
                                     <div className='group-even:order-1 group-odd:order-2 w-24'> 
                                         <img src={images(`./${arrImg[i]}.svg`)} alt="" className='w-full'/>

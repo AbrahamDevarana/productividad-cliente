@@ -101,6 +101,36 @@ const SomosDevarana = () => {
                                         <Link key={i} to={`/perfil/${item.slug}`}>
                                             <img src={item.picture} alt="" />
                                         </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
                                     </>
                                 ))
 
@@ -112,6 +142,36 @@ const SomosDevarana = () => {
                         { users && users.length > 0 ?
                                 users.map( (item, i) => (
                                     <>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
+                                        <Link key={i} to={`/perfil/${item.slug}`}>
+                                            <img src={item.picture} alt="" />
+                                        </Link>
                                         <Link key={i} to={`/perfil/${item.slug}`}>
                                             <img src={item.picture} alt="" />
                                         </Link>
@@ -130,7 +190,7 @@ const SomosDevarana = () => {
         </div>
 
         <div className="grid grid-cols-12 gap-5">
-            <Box className="col-span-12 md:col-span-6 bg-w-logotipo bg-auto bg-no-repeat bg-right">
+            <Box className="col-span-12 md:col-span-4 bg-w-logotipo bg-auto bg-no-repeat bg-right">
                 <div className="flex">
                     <h1 className="text-lg font-medium">Logotipo</h1>
                     {isAdmin ? <AiFillEdit onClick={() => showModal( { 'logotipo': logotipo }, 'Logotipo', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
@@ -138,7 +198,7 @@ const SomosDevarana = () => {
                 {/* <p>{logotipo}</p> */}
                 <div className="font-light" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(logotipo) }}></div>
             </Box>
-            <Box className="col-span-12 md:col-span-6 bg-w-isotipo bg-no-repeat bg-right">
+            <Box className="col-span-12 md:col-span-4 bg-w-isotipo bg-no-repeat bg-right">
                 <div className="flex">
                     <h1 className="text-lg font-medium">Isotipo</h1>
                     {isAdmin ? <AiFillEdit onClick={() => showModal({'isotipo': isotipo}, 'Isotipo', '200')} className="text-xl text-custom-dark2 ml-auto cursor-pointer"/> : null }
@@ -146,6 +206,7 @@ const SomosDevarana = () => {
                     {/* <p>{isotipo}</p> */}
                     <div className="font-light" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(isotipo) }}></div>
             </Box>
+            <div className="md:col-span-4"></div>
             <Box className="col-span-6 md:col-span-4 bg-w-proposito bg-no-repeat bg-right">
                 <div className="flex">
                     <div className="font-medium">
